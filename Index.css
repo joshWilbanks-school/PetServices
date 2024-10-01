@@ -4,6 +4,63 @@ body {
     padding: 20px;
     font-family: Arial, sans-serif;
 }
+.star-rating {
+    color: gold;
+}
+
+/* Styling for the reviews section */
+#reviews {
+    background-color: transparent; /* Making the background transparent */
+    color: white; /* Matching the text color to the rest of the content */
+}
+
+/* Basic styling for reviews list */
+#reviews-list {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0; /* Remove default padding */
+}
+
+#reviews-list li {
+    margin: 20px 0; /* Space between reviews */
+    padding: 10px; /* Padding within each review */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Light border for separation */
+    border-radius: 5px; /* Rounded corners for a softer look */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for contrast */
+}
+
+/* Basic styling for modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Basic styling for header and sections */
+header, .content-section {
+    text-align: center;
+    margin: 20px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: gray;
+}
+
 
 .main-title {
     font-family: 'Georgia', serif;
@@ -111,3 +168,20 @@ button {
 button:hover {
     background-color: #111;
 }
+
+/* Pet Type Section Styling */
+.pet-type-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.pet-type-container label {
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.pet-type-container input[type="radio"] {
+    margin-right: 10px;
+}
+
