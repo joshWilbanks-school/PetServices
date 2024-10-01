@@ -1,43 +1,113 @@
+/* General Styling */
 body {
     background-color: #999999;
+    padding: 20px;
+    font-family: Arial, sans-serif;
 }
 
+.main-title {
+    font-family: 'Georgia', serif;
+    color: #ADD8E6;
+    text-align: center;
+    font-size: 3em;
+    margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(0.0, 0, 0.2);
+    letter-spacing: 2px;
+}
+
+/* Navigation Bar Styling */
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
-  }
-  
-  li {
+}
+
+li {
     float: left;
-  }
-  
-  li a {
+}
+
+li a {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-  }
-  
-  /* Change the link color to #111 (black) on hover */
-  li a:hover {
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
     background-color: #111;
     cursor: pointer;
-  }
-  
-  .main-title {
-    font-family: 'Georgia', serif;
-    color: #ADD8E6; 
-    text-align: center; 
-    font-size: 3em;
-    margin-top: 20px;
-    text-shadow: 2px 2px 4px rgba(0.0,0, 0.2);
-    letter-spacing: 2px;
-  }
-  body{
+}
+
+.content-section {
     padding: 20px;
-  }
-  
+    background-color: #fff;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    text-align: center;
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-section, .signup-section {
+    width: 48%; /* Slightly smaller to fit both sections properly */
+}
+
+input {
+    display: block;
+    width: 95%;  /* Make input boxes a bit smaller */
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #111;
+}
