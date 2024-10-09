@@ -1,5 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel
+from schemas.user_type import UserType
 
 
 class UserBase(BaseModel):
@@ -8,6 +9,7 @@ class UserBase(BaseModel):
     last_name: str
     age: int
     profile_picture: str
+    user_type_id: int
 
 
 class UserCreate(BaseModel):
@@ -15,6 +17,7 @@ class UserCreate(BaseModel):
     last_name: str
     age: int
     profile_picture: str
+    user_type_id: int
 
 
 class UserUpdate(BaseModel):
@@ -22,9 +25,11 @@ class UserUpdate(BaseModel):
     last_name: Optional[str] = None
     age: Optional[int] = None
     profile_picture: Optional[str] = None
+    user_type_id: Optional[str] = None
 
 
 class User(UserBase):
+    user_type: UserType = None
 
     class ConfigDict:
         from_attributes = True

@@ -1,17 +1,13 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status, Response, Depends
-from models import user as model
-from schemas import user as schema
+from models import user_type as model
+from schemas import user_type as schema
 from sqlalchemy.exc import SQLAlchemyError
 
 
-def create(db: Session, request: schema.UserCreate):
-    new_item = model.User(
-        first_name=request.first_name,
-        last_name=request.last_name,
-        age=request.age,
-        profile_picture=request.profile_picture,
-        user_type_id=request.user_type_id
+def create(db: Session, request: schema.UserTypeCreate):
+    new_item = model.UserType(
+        type=request.type
     )
 
     try:
@@ -27,16 +23,16 @@ def create(db: Session, request: schema.UserCreate):
 
 def read_all(db: Session):
     try:
-        result = db.query(model.User).all()
+        result = db.query(model.UserType).all()
     except SQLAlchemyError as e:
-        error = str(e)
+        error = str(e.__dict__['orig'])
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
     return result
 
 
 def read_one(db: Session, item_id: int):
     try:
-        item = db.query(model.User).filter(model.User.id == item_id).first()
+        item = db.query(model.UserType).filter(model.UserType.id == item_id).first()
         if not item:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Id not found!")
     except SQLAlchemyError as e:
@@ -47,7 +43,7 @@ def read_one(db: Session, item_id: int):
 
 def update(db: Session, item_id: int, request):
     try:
-        item = db.query(model.User).filter(model.User.id == item_id)
+        item = db.query(model.UserType).filter(model.UserType.id == item_id)
         if not item.first():
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Id not found!")
         update_data = request.dict(exclude_unset=True)
@@ -61,7 +57,7 @@ def update(db: Session, item_id: int, request):
 
 def delete(db: Session, item_id: int):
     try:
-        item = db.query(model.User).filter(model.User.id == item_id)
+        item = db.query(model.UserType).filter(model.UserType.id == item_id)
         if not item.first():
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Id not found!")
         item.delete(synchronize_session=False)
