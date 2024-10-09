@@ -1,7 +1,7 @@
-
+from routers import (user)
 
 
 def load_routes(app):
-    pass
+    app.include_router(user.router)
 
 

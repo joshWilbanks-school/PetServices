@@ -1,9 +1,12 @@
+from . import user
 
 from dependencies.database import engine
 
 
 def index():
-    pass
+    user.Base.metadata.create_all(engine)
+    
+
 
 
 
