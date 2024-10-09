@@ -31,9 +31,9 @@ def read_all(db: Session):
     return result
 
 
-def read_one(db: Session, item_id: int):
+def read_one(db: Session, customer_id: int):
     try:
-        item = db.query(model.Customer).filter(model.Customer.id == item_id).first()
+        item = db.query(model.Customer).filter(model.Customer.id == customer_id).first()
         if not item:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Id not found!")
     except SQLAlchemyError as e:
@@ -42,9 +42,9 @@ def read_one(db: Session, item_id: int):
     return item
 
 
-def update(db: Session, item_id: int, request):
+def update(db: Session, customer_id: int, request):
     try:
-        item = db.query(model.Customer).filter(model.Customer.id == item_id)
+        item = db.query(model.Customer).filter(model.Customer.id == customer_id)
         if not item.first():
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Id not found!")
         update_data = request.dict(exclude_unset=True)
@@ -56,9 +56,9 @@ def update(db: Session, item_id: int, request):
     return item.first()
 
 
-def delete(db: Session, item_id: int):
+def delete(db: Session, customer_id: int):
     try:
-        item = db.query(model.Customer).filter(model.Customer.id == item_id)
+        item = db.query(model.Customer).filter(model.Customer.id == customer_id)
         if not item.first():
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Id not found!")
         item.delete(synchronize_session=False)
