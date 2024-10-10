@@ -124,11 +124,61 @@ button:hover {
 }
 
 .content-section {
+    font-family: Arial, sans-serif;
     padding: 20px;
-    background-color: #fff;
-    margin: 20px 0;
-    border-radius: 8px;
+    background-color:#f9f9f9;
+    border: 2px solid #333;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto; 
+    text-align: center;
+    color: #333;
+
 }
+h2 {
+    color: #000; /* Black */
+}
+
+.email-link {
+    color: #007BFF; /* A soft blue color for links */
+    text-decoration: none;
+}
+
+.email-link:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.phone-number {
+    font-weight: bold; /* Bold for emphasis */
+}
+.write-button {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.write-button:hover {
+    background-color: gray;
+}
+.social-media ul {
+    list-style: none;
+    padding-left: 0;
+}
+.social-media li {
+    display: inline;
+    margin-right: 10px;
+}
+.social-media a {
+    text-decoration: none;
+    color: black;
+}
+
+.social-media a:hover {
+    text-decoration: underline;
+}
+
 
 footer {
     text-align: center;
@@ -192,4 +242,11 @@ footer {
 
 #review-form button:hover {
     background-color: #111;
+}
+.login-logo {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 10px;
 }
