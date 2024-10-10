@@ -1,4 +1,5 @@
 let selectedPetType = '';
+const users = {}; // To store users' information
 
 // Show the login/signup modal on page load
 window.onload = function () {
@@ -9,12 +10,16 @@ window.onload = function () {
 function login() {
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
-    if (username && password) {
+
+    if (!users[username]) {
+        alert("Username not found. Please try again.");
+    } else if (users[username] === password) {
         document.getElementById('auth-modal').style.display = 'none'; // Hide modal
         document.getElementById('navbar').style.display = 'block'; // Show navbar
+        document.getElementById('logout-btn').style.display = 'block'; // Show logout button
         alert("Welcome, " + username + "!");
     } else {
-        alert("Please enter valid credentials.");
+        alert("Incorrect password. Please try again.");
     }
 }
 
@@ -22,14 +27,42 @@ function login() {
 function signup() {
     const username = document.getElementById('signup-username').value;
     const password = document.getElementById('signup-password').value;
+
     if (username && password) {
-        alert("Account created successfully. Please log in.");
-        // Clear the signup form after successful signup
-        document.getElementById('signup-username').value = '';
-        document.getElementById('signup-password').value = '';
+        if (users[username]) {
+            alert("Username already taken. Please choose a different username.");
+        } else {
+            users[username] = password; // Store username and password
+            alert("Account created successfully. Please log in.");
+            document.getElementById('signup-username').value = '';
+            document.getElementById('signup-password').value = '';
+        }
     } else {
         alert("Please fill out all fields.");
     }
+}
+
+// Logout function
+function logout() {
+    document.getElementById('navbar').style.display = 'none'; // Hide navbar
+    document.getElementById('logout-btn').style.display = 'none'; // Hide logout button
+    document.getElementById('auth-modal').style.display = 'block'; // Show modal
+
+    // Clear all input fields
+    document.getElementById('login-username').value = '';
+    document.getElementById('login-password').value = '';
+    document.getElementById('signup-username').value = '';
+    document.getElementById('signup-password').value = '';
+    document.getElementById('review-name').value = '';
+    document.getElementById('review-rating').value = '5';
+    document.getElementById('review-message').value = '';
+
+    // Hide all content sections and show the welcome message
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(section => section.style.display = 'none');
+    document.getElementById('welcome-section').style.display = 'block'; // Show the homepage welcome message
+
+    alert("You have logged out successfully.");
 }
 
 // Show the selected section
@@ -90,8 +123,8 @@ function loadReviews() {
         reviewsList.appendChild(li);
     });
 }
-//  Sidebar that collapses
 
+// Sidebar that collapses
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('main-content');
@@ -114,12 +147,8 @@ function addReview(event) {
         const reviewItem = document.createElement('li');
         
         // Build the review HTML structure
-        reviewItem.innerHTML = `
-            <strong>${name}</strong>
-            <span class="star-rating">${'★'.repeat(rating)}</span>
-            <p>${message}</p>
-        `;
-
+        reviewItem.innerHTML = `<strong>${name}</strong><span class="star-rating">${'★'.repeat(rating)}</span><p>${message}</p>`;
+        
         // Append the new review to the list
         reviewList.appendChild(reviewItem);
 

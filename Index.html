@@ -24,6 +24,9 @@
 
     <!-- Main Content -->
     <div id="main-content" class="main-content">
+        <!-- Logout Button -->
+        <button id="logout-btn" style="display: none;" onclick="logout()">Logout</button>
+
         <!-- Welcome Message -->
         <section id="welcome-section" class="content-section">
             <h2>Welcome to the Homepage</h2>
@@ -68,19 +71,19 @@
         <!-- Grooming Section -->
         <div id="grooming" class="content-section" style="display: none;">
             <h2>Grooming</h2>
-            <p id="grooming-description">Basic grooming services description.</p>
+            <p id="grooming-description">Our grooming services ensure that your pet looks and feels their best. We offer thorough bathing, professional fur trimming, and nail clipping. Our experienced groomers use gentle techniques to pamper your pet, providing a relaxing experience while keeping their coat healthy and shiny.</p>
         </div>
 
         <!-- Walking Section -->
         <div id="walking" class="content-section" style="display: none;">
             <h2>Walking</h2>
-            <p id="walking-description">Basic dog walking services description.</p>
+            <p id="walking-description">Our dog walking services are tailored to provide exercise and companionship for your furry friend. Each walk is customized to your dog's energy level and needs, ensuring they stay active and happy. Our professional walkers are trained to manage different breeds and temperaments, making each outing enjoyable.</p>
         </div>
 
         <!-- Sitting Section -->
         <div id="sitting" class="content-section" style="display: none;">
             <h2>Sitting</h2>
-            <p id="sitting-description">Basic pet sitting services description.</p>
+            <p id="sitting-description">Our pet sitting services offer peace of mind while you're away. We provide personalized care that includes feeding, playtime, and companionship. Your pet will receive one-on-one attention in a familiar environment, ensuring they feel safe and loved until you return.</p>
         </div>
 
         <!-- Contact Section -->
@@ -92,37 +95,37 @@
 
         <!-- Reviews Section -->
         <div id="reviews" class="content-section" style="display: none;">
-        <h2>Customer Reviews</h2>
-        <p>Check out what our customers have to say!</p>
-    
-        <!-- Review Input Form -->
-        <form id="review-form" onsubmit="addReview(event)">
-        <div>
-            <label for="review-name">Your Name:</label>
-            <input type="text" id="review-name" placeholder="Enter your name" required>
-        </div>
-        <div>
-            <label for="review-rating">Your Rating:</label>
-            <select id="review-rating" required>
-                <option value="5">★★★★★</option>
-                <option value="4">★★★★</option>
-                <option value="3">★★★</option>
-                <option value="2">★★</option>
-                <option value="1">★</option>
-            </select>
-        </div>
-        <div>
-            <label for="review-message">Your Review:</label>
-            <textarea id="review-message" placeholder="Enter your review" required></textarea>
-        </div>
-        <button type="submit">Submit Review</button>
-        </form>
+            <h2>Customer Reviews</h2>
+            <p>Check out what our customers have to say!</p>
+        
+            <!-- Review Input Form -->
+            <form id="review-form" onsubmit="addReview(event)">
+                <div>
+                    <label for="review-name">Your Name:</label>
+                    <input type="text" id="review-name" placeholder="Enter your name" required>
+                </div>
+                <div>
+                    <label for="review-rating">Your Rating:</label>
+                    <select id="review-rating" required>
+                        <option value="5">★★★★★</option>
+                        <option value="4">★★★★</option>
+                        <option value="3">★★★</option>
+                        <option value="2">★★</option>
+                        <option value="1">★</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="review-message">Your Review:</label>
+                    <textarea id="review-message" placeholder="Enter your review" required></textarea>
+                </div>
+                <button type="submit">Submit Review</button>
+            </form>
 
-    <!-- Reviews List -->
-    <ul id="reviews-list">
-        <!-- Reviews will be dynamically added here -->
-    </ul>
-</div>
+            <!-- Reviews List -->
+            <ul id="reviews-list">
+                <!-- Reviews will be dynamically added here -->
+            </ul>
+        </div>
 
         <!-- Footer -->
         <footer>
