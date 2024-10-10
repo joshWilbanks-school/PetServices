@@ -99,3 +99,33 @@ function toggleSidebar() {
     sidebar.classList.toggle('collapsed');
     mainContent.classList.toggle('collapsed');
 }
+
+// Handle adding a review
+function addReview(event) {
+    event.preventDefault(); // Prevent the form from refreshing the page
+    
+    const name = document.getElementById('review-name').value;
+    const rating = document.getElementById('review-rating').value;
+    const message = document.getElementById('review-message').value;
+
+    if (name && rating && message) {
+        // Create a new review element
+        const reviewList = document.getElementById('reviews-list');
+        const reviewItem = document.createElement('li');
+        
+        // Build the review HTML structure
+        reviewItem.innerHTML = `
+            <strong>${name}</strong>
+            <span class="star-rating">${'★'.repeat(rating)}</span>
+            <p>${message}</p>
+        `;
+
+        // Append the new review to the list
+        reviewList.appendChild(reviewItem);
+
+        // Clear the form
+        document.getElementById('review-name').value = '';
+        document.getElementById('review-rating').value = '5';
+        document.getElementById('review-message').value = '';
+    }
+}
