@@ -1,122 +1,76 @@
 /* General Styling */
 body {
     background-color: #999999;
-    padding: 20px;
+    padding: 0;
+    margin: 0;
     font-family: Arial, sans-serif;
 }
-.star-rating {
-    color: gold;
-}
 
-/* Styling for the reviews section */
-#reviews {
-    background-color: transparent; /* Making the background transparent */
-    color: white; /* Matching the text color to the rest of the content */
-}
-
-/* Basic styling for reviews list */
-#reviews-list {
-    list-style-type: none; /* Remove default list styles */
-    padding: 0; /* Remove default padding */
-}
-
-#reviews-list li {
-    margin: 20px 0; /* Space between reviews */
-    padding: 10px; /* Padding within each review */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Light border for separation */
-    border-radius: 5px; /* Rounded corners for a softer look */
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for contrast */
-}
-
-/* Basic styling for modal */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+.main-content {
+    margin-left: 250px; /* Default width when sidebar is open */
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    transition: margin-left 0.3s ease;
 }
 
-/* Basic styling for header and sections */
-header, .content-section {
-    text-align: center;
-    margin: 20px;
-}
-
-footer {
-    text-align: center;
-    margin-top: 20px;
-    color: gray;
-}
-
-
-.main-title {
-    font-family: 'Georgia', serif;
-    color: #ADD8E6;
-    text-align: center;
-    font-size: 3em;
-    margin-top: 20px;
-    text-shadow: 2px 2px 4px rgba(0.0, 0, 0.2);
-    letter-spacing: 2px;
-}
-
-/* Navigation Bar Styling */
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
     background-color: #333;
+    overflow-x: hidden;
+    transition: width 0.3s ease;
 }
 
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
+.sidebar a {
+    padding: 10px 15px;
     text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.3s;
 }
 
-/* Change the link color to #111 (black) on hover */
-li a:hover {
+.sidebar a:hover {
     background-color: #111;
+}
+
+.toggle-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
     cursor: pointer;
 }
 
-.content-section {
-    padding: 20px;
-    background-color: #fff;
-    margin: 20px 0;
-    border-radius: 8px;
+.toggle-btn:hover {
+    background-color: #111;
 }
 
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+/* Collapsed sidebar styles */
+.sidebar.collapsed {
+    width: 60px;
 }
 
-/* Modal Styling */
+.sidebar.collapsed a {
+    font-size: 0;
+    padding: 10px 0;
+}
+
+.sidebar.collapsed .toggle-btn {
+    left: 70px;
+}
+
+.main-content.collapsed {
+    margin-left: 60px; /* Adjust the margin when sidebar is collapsed */
+}
+
+/* Modal and other section styles */
 .modal {
     display: none;
     position: fixed;
@@ -143,12 +97,12 @@ footer {
 }
 
 .login-section, .signup-section {
-    width: 48%; /* Slightly smaller to fit both sections properly */
+    width: 48%;
 }
 
 input {
     display: block;
-    width: 95%;  /* Make input boxes a bit smaller */
+    width: 95%;
     margin: 10px auto;
     padding: 10px;
     border-radius: 5px;
@@ -169,7 +123,23 @@ button:hover {
     background-color: #111;
 }
 
-/* Pet Type Section Styling */
+.content-section {
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
 .pet-type-container {
     display: flex;
     justify-content: center;
@@ -184,4 +154,3 @@ button:hover {
 .pet-type-container input[type="radio"] {
     margin-right: 10px;
 }
-

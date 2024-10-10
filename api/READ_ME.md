@@ -2,7 +2,7 @@ TO SET UP API:
 
 1 - make sure you have python and mysql installed
 2 - make sure you have all of the dependencies installed (uvicorn, sqlalchemy, pydantic, fastapi -> can be installed with 'pip install' command)
-3 - create a database to be used in mysql
+3 - create a database to be usedl in mysql
 4 - update the config file (./api/dependencies/config) with the correct information (username, password, database name)
 5 - cd to the api folder
 6 - run the command 'uvicorn main:app'

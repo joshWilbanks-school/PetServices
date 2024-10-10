@@ -5,200 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Services Homepage</title>
     <link rel="stylesheet" href="index.css"> <!-- Linking the external CSS file -->
-    
 </head>
 <body>
-    <!-- Welcome Message -->
-    <section id="welcome-section" class="content-section">
-        <h2>Welcome to the Homepage</h2>
-        <p>Let's get started!</p>
-    </section>
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <button class="toggle-btn" onclick="toggleSidebar()">☰</button> <!-- Button to collapse/expand the sidebar -->
+        <nav id="navbar">
+            <ul>
+                <li><a href="#" onclick="showSection('pet-type-section')">Select Pet Type</a></li>
+                <li><a href="#" onclick="showSection('grooming')">Grooming</a></li>
+                <li><a href="#" onclick="showSection('walking')">Walking</a></li>
+                <li><a href="#" onclick="showSection('sitting')">Sitting</a></li>
+                <li><a href="#" onclick="showSection('contact')">Contact</a></li>
+                <li><a href="#" onclick="showSection('reviews')">Reviews</a></li>
+            </ul>
+        </nav>
+    </div>
 
-    <!-- Login/Signup Modal -->
-    <div id="auth-modal" class="modal">
-        <div class="modal-content">
-            <h2>Login or Sign Up</h2>
-            <div class="form-container">
-                <div class="login-section">
-                    <h3>Login</h3>
-                    <input type="text" id="login-username" placeholder="Username" required>
-                    <input type="password" id="login-password" placeholder="Password" required>
-                    <button onclick="login()">Login</button>
-                </div>
+    <!-- Main Content -->
+    <div id="main-content" class="main-content">
+        <!-- Welcome Message -->
+        <section id="welcome-section" class="content-section">
+            <h2>Welcome to the Homepage</h2>
+            <p>Let's get started!</p>
+        </section>
 
-                <div class="signup-section">
-                    <h3>Sign Up</h3>
-                    <input type="text" id="signup-username" placeholder="Username" required>
-                    <input type="password" id="signup-password" placeholder="Password" required>
-                    <button onclick="signup()">Sign Up</button>
+        <!-- Login/Signup Modal -->
+        <div id="auth-modal" class="modal">
+            <div class="modal-content">
+                <h2>Login or Sign Up</h2>
+                <div class="form-container">
+                    <div class="login-section">
+                        <h3>Login</h3>
+                        <input type="text" id="login-username" placeholder="Username" required>
+                        <input type="password" id="login-password" placeholder="Password" required>
+                        <button onclick="login()">Login</button>
+                    </div>
+
+                    <div class="signup-section">
+                        <h3>Sign Up</h3>
+                        <input type="text" id="signup-username" placeholder="Username" required>
+                        <input type="password" id="signup-password" placeholder="Password" required>
+                        <button onclick="signup()">Sign Up</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Header -->
-    <header class="header">
-        <h1 class="main-title">Pet Services Prototype</h1>
-    </header>
+        <!-- Pet Type Section -->
+        <section id="pet-type-section" class="content-section" style="display: none;">
+            <h2>Select Your Pet Type</h2>
+            <div class="pet-type-container">
+                <label>
+                    <input type="radio" name="pet-type" value="cat" onclick="selectPetType('cat')"> Cat Services
+                </label>
+                <label>
+                    <input type="radio" name="pet-type" value="dog" onclick="selectPetType('dog')"> Dog Services
+                </label>
+            </div>
+        </section>
 
-    <!-- Navigation -->
-    <nav id="navbar" style="display: none;"> <!-- Initially hidden -->
-        <ul>
-            <li><a href="#" onclick="showSection('pet-type-section')">Select Pet Type</a></li>
-            <li><a href="#" onclick="showSection('grooming')">Grooming</a></li>
-            <li><a href="#" onclick="showSection('walking')">Walking</a></li>
-            <li><a href="#" onclick="showSection('sitting')">Sitting</a></li>
-            <li><a href="#" onclick="showSection('contact')">Contact</a></li>
-            <li><a href="#" onclick="showSection('reviews')">Reviews</a></li> <!-- New Reviews Section -->
-        </ul>
-    </nav>
-
-    <!-- Pet Type Section -->
-    <section id="pet-type-section" class="content-section" style="display: none;">
-        <h2>Select Your Pet Type</h2>
-        <div class="pet-type-container">
-            <label>
-                <input type="radio" name="pet-type" value="cat" onclick="selectPetType('cat')">
-                Cat Services
-            </label>
-            <label>
-                <input type="radio" name="pet-type" value="dog" onclick="selectPetType('dog')">
-                Dog Services
-            </label>
+        <!-- Grooming Section -->
+        <div id="grooming" class="content-section" style="display: none;">
+            <h2>Grooming</h2>
+            <p id="grooming-description">Basic grooming services description.</p>
         </div>
-    </section>
 
-    <!-- Content Sections -->
-    <div id="grooming" class="content-section" style="display: none;">
-        <h2>Grooming</h2>
-        <p id="grooming-description">Basic grooming services description.</p>
+        <!-- Walking Section -->
+        <div id="walking" class="content-section" style="display: none;">
+            <h2>Walking</h2>
+            <p id="walking-description">Basic dog walking services description.</p>
+        </div>
+
+        <!-- Sitting Section -->
+        <div id="sitting" class="content-section" style="display: none;">
+            <h2>Sitting</h2>
+            <p id="sitting-description">Basic pet sitting services description.</p>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact" class="content-section" style="display: none;">
+            <h2>Contact Information</h2>
+            <p>Email: contact@petservices.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+
+        <!-- Reviews Section -->
+        <div id="reviews" class="content-section" style="display: none;">
+            <h2>Customer Reviews</h2>
+            <p>Check out what our customers have to say!</p>
+            <ul id="reviews-list">
+                <!-- Reviews will be dynamically added here -->
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Pet Services</p>
+        </footer>
     </div>
 
-    <div id="walking" class="content-section" style="display: none;">
-        <h2>Walking</h2>
-        <p id="walking-description">Basic dog walking services description.</p>
-    </div>
-
-    <div id="sitting" class="content-section" style="display: none;">
-        <h2>Sitting</h2>
-        <p id="sitting-description">Basic pet sitting services description.</p>
-    </div>
-
-    <div id="contact" class="content-section" style="display: none;">
-        <h2>Contact Information</h2>
-        <p>Email: contact@petservices.com</p>
-        <p>Phone: (123) 456-7890</p>
-    </div>
-
-    <!-- Reviews Section -->
-    <div id="reviews" class="content-section" style="display: none;">
-        <h2>Customer Reviews</h2>
-        <p>Check out what our customers have to say!</p>
-        <ul id="reviews-list">
-            <!-- Dog reviews will be displayed here -->
-        </ul>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Pet Services</p>
-    </footer>
-
-    <!-- JavaScript for Login/Signup and Navigation -->
-    <script>
-        let selectedPetType = '';
-
-        // Show the login/signup modal on page load
-        window.onload = function () {
-            document.getElementById('auth-modal').style.display = 'block';
-        }
-
-        // Handle login
-        function login() {
-            const username = document.getElementById('login-username').value;
-            const password = document.getElementById('login-password').value;
-            if (username && password) {
-                document.getElementById('auth-modal').style.display = 'none'; // Hide modal
-                document.getElementById('navbar').style.display = 'block'; // Show navbar
-                alert("Welcome, " + username + "!");
-            } else {
-                alert("Please enter valid credentials.");
-            }
-        }
-
-        // Handle signup
-        function signup() {
-            const username = document.getElementById('signup-username').value;
-            const password = document.getElementById('signup-password').value;
-            if (username && password) {
-                alert("Account created successfully. Please log in.");
-                // Clear the signup form after successful signup
-                document.getElementById('signup-username').value = '';
-                document.getElementById('signup-password').value = '';
-            } else {
-                alert("Please fill out all fields.");
-            }
-        }
-
-        // Show the selected section
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.content-section');
-            sections.forEach(section => section.style.display = 'none');
-            document.getElementById(sectionId).style.display = 'block';
-
-            // Load reviews based on selected pet type when the reviews section is shown
-            if (sectionId === 'reviews') {
-                loadReviews();
-            }
-        }
-
-        // Handle pet type selection
-        function selectPetType(type) {
-            selectedPetType = type;
-            updateServiceDescriptions();
-            showSection('grooming');
-        }
-
-        // Update service descriptions based on pet type
-        function updateServiceDescriptions() {
-            if (selectedPetType === 'cat') {
-                document.getElementById('grooming-description').innerText = "We offer specialized grooming services for cats including bathing, nail trimming, and fur brushing.";
-                document.getElementById('walking-description').innerText = "Our cat walking services include playtime and outdoor exploration.";
-                document.getElementById('sitting-description').innerText = "Pet sitting for cats includes feeding, litter box maintenance, and companionship.";
-            } else if (selectedPetType === 'dog') {
-                document.getElementById('grooming-description').innerText = "We offer dog grooming services including bathing, fur trimming, and nail clipping.";
-                document.getElementById('walking-description').innerText = "Our dog walking services provide exercise and companionship for your furry friend.";
-                document.getElementById('sitting-description').innerText = "Dog sitting services include feeding, playtime, and companionship.";
-            }
-        }
-
-        // Load reviews based on pet type
-        function loadReviews() {
-            const reviewsList = document.getElementById('reviews-list');
-            reviewsList.innerHTML = ''; // Clear existing reviews
-
-            // Sample reviews based on pet type
-            const dogReviews = [
-        { name: 'Artemisia', rating: 5, review: 'Excellent service! My dog loved the grooming.' },
-        { name: 'Balthazar', rating: 4, review: 'Great experience, would recommend!' },
-        { name: 'Cressida', rating: 5, review: 'My dog came back looking fabulous!' },
-    ];
-
-    const catReviews = [
-        { name: 'Dorian', rating: 5, review: 'The cat grooming service was superb!' },
-        { name: 'Elysia', rating: 3, review: 'Decent service, but my cat was a bit anxious.' },
-        { name: 'Thaddeus', rating: 4, review: 'Great care taken for my kitty, thank you!' },
-    ];
-
-            const reviews = selectedPetType === 'dog' ? dogReviews : catReviews;
-
-            reviews.forEach(review => {
-                const li = document.createElement('li');
-                li.innerHTML = `<strong>${review.name}</strong> <span class="star-rating">${'★'.repeat(review.rating)}</span><p>${review.review}</p>`;
-                reviewsList.appendChild(li);
-            });
-        }
-    </script>
+    <!-- Linking the external JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
-
