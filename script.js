@@ -6,6 +6,38 @@ window.onload = function () {
     document.getElementById('auth-modal').style.display = 'block';
 }
 
+// Sidebar that collapses
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('main-content');
+
+    sidebar.classList.toggle('collapsed');
+    mainContent.classList.toggle('collapsed');
+    
+    // Ensure the toggle button remains visible
+    const toggleButton = document.querySelector('.toggle-btn');
+    if (sidebar.classList.contains('collapsed')) {
+        toggleButton.style.display = 'block';
+    } else {
+        toggleButton.style.display = 'block'; // Keep it visible after toggle
+    }
+}
+function toggleNavbar() {
+    const navbar = document.getElementById('navbar');
+    const mainContent = document.getElementById('main-content');
+
+    // Toggle the collapsed class on the navbar
+    navbar.classList.toggle('collapsed');
+
+    // Ensure the main content adjusts accordingly
+    mainContent.classList.toggle('collapsed');
+}
+
+
+
+
+
+
 // Handle login
 function login() {
     const username = document.getElementById('login-username').value;
@@ -68,18 +100,31 @@ function logout() {
 // Show the selected section
 function showSection(sectionId) {
     const sections = document.querySelectorAll('.content-section');
+    
+    // Hide all sections
     sections.forEach(section => section.style.display = 'none');
+    
+    // Show the selected section
     document.getElementById(sectionId).style.display = 'block';
 
-    // Load reviews based on selected pet type when the reviews section is shown
-    if (sectionId === 'reviews') {
-        loadReviews();
-    }
+    // Ensure the sidebar remains visible
+    document.getElementById('navbar').style.display = 'block'; // Keep navbar visible
 }
 
 // Handle pet type selection
 function selectPetType(type) {
     selectedPetType = type;
+
+    // Highlight the selected pet type
+    const petTypeLinks = document.querySelectorAll('#navbar li a');
+    petTypeLinks.forEach(link => {
+        if (link.textContent.toLowerCase() === type) {
+            link.classList.add('active'); // Add active class to the selected link
+        } else {
+            link.classList.remove('active'); // Remove active class from others
+        }
+    });
+
     updateServiceDescriptions();
     showSection('grooming');
 }
@@ -122,15 +167,6 @@ function loadReviews() {
         li.innerHTML = `<strong>${review.name}</strong> <span class="star-rating">${'★'.repeat(review.rating)}</span><p>${review.review}</p>`;
         reviewsList.appendChild(li);
     });
-}
-
-// Sidebar that collapses
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const mainContent = document.getElementById('main-content');
-    
-    sidebar.classList.toggle('collapsed');
-    mainContent.classList.toggle('collapsed');
 }
 
 // Handle adding a review

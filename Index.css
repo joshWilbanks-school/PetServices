@@ -11,6 +11,85 @@ body {
     padding: 20px;
     transition: margin-left 0.3s ease;
 }
+.toggle-btn {
+    position: fixed; 
+    top: 20px;
+    left: 20px;
+    z-index: 1000; 
+    background-color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.sidebar {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 250px; /* Adjust width */
+    height: 100%;
+    background-color: #333;
+    transition: width 0.3s ease;
+}
+/* Toggle button (three lines) styles */
+
+.toggle-btn {
+    position: fixed; 
+    top: 20px; 
+    left: 20px; 
+    z-index: 1000; 
+    background-color: #333; 
+    color: white;
+    border: none; 
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* Navbar styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; /* Full width of sidebar when open */
+    height: 100%;
+    background-color: #333;
+    transition: transform 0.3s ease; /* Smooth slide effect */
+    transform: translateX(0); /* Default: visible */
+}
+
+.navbar.collapsed {
+    transform: translateX(-250px); /* Move out of view */
+}
+
+/* Main content to shift when navbar opens */
+
+.navbar.collapsed + .main-content {
+    margin-left: 0; /* Shift content back when navbar is collapsed */
+}
+
+.sidebar.collapsed {
+    width: 50px; /* Adjust for collapsed width */
+}
+
+.sidebar.collapsed ul {
+    display: none; /* Hide the sidebar content when collapsed */
+}
+
+.sidebar.collapsed .toggle-btn {
+    left: 20px; /* Keep the toggle button in the same position */
+    display: block; /* Ensure the button remains visible */
+}
+
+.main-content {
+    margin-left: 250px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed + .main-content {
+    margin-left: 50px; /* Adjust main content margin when sidebar is collapsed */
+}
+
 
 .sidebar {
     height: 100%;

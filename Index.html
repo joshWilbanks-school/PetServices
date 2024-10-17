@@ -10,8 +10,9 @@
     <!-- Sidebar -->
     <div id="sidebar" class="sidebar">
        
-        <button class="toggle-btn" onclick="toggleSidebar()">☰</button> <!-- Button to collapse/expand the sidebar -->
-        <nav id="navbar">
+        <button class="toggle-btn" onclick="toggleNavbar()">☰</button> <!-- Updated function name -->
+
+        <nav id="navbar" class="navbar">
             <ul>
                 <li><a href="#" onclick="showSection('pet-type-section')">Select Pet Type</a></li>
                 <li><a href="#" onclick="showSection('grooming')">Grooming</a></li>
@@ -47,7 +48,7 @@
                         <input type="password" id="login-password" placeholder="Password" required>
                         <button onclick="login()">Login</button>
                     </div>
-
+                    
                     <div class="signup-section">
                         <h3>Sign Up</h3>
                         <input type="text" id="signup-username" placeholder="Username" required>
