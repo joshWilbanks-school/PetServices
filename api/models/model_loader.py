@@ -1,4 +1,4 @@
-from . import user, user_type, service_provider, customer, review, time_measurement, service_type
+from . import user, user_type, service_provider, customer, review, time_measurement, service_type, animal_type
 
 from dependencies.database import engine
 
@@ -11,6 +11,7 @@ def index():
     review.Base.metadata.create_all(engine)
     time_measurement.Base.metadata.create_all(engine)
     service_type.Base.metadata.create_all(engine)
+    animal_type.Base.metadata.create_all(engine)
 
 
 

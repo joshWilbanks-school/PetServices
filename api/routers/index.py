@@ -1,4 +1,4 @@
-from routers import (user, user_type, service_provider, customer, review, time_measurement, service_type)
+from routers import (user, user_type, service_provider, customer, review, time_measurement, service_type, animal_type)
 
 
 def load_routes(app):
@@ -9,5 +9,5 @@ def load_routes(app):
     app.include_router(review.router)
     app.include_router(time_measurement.router)
     app.include_router(service_type.router)
-
+    app.include_router(animal_type.router)
 
