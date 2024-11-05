@@ -16,7 +16,7 @@ class Review(Base):
     service_provider = relationship("ServiceProvider")
     
     
-trigger = DDL(
+insert_trigger = DDL(
     
     "CREATE TRIGGER update_rating_after_insert"
     " AFTER INSERT ON review"
@@ -25,8 +25,40 @@ trigger = DDL(
     
 )
 
+update_trigger = DDL(
+    
+    "CREATE TRIGGER update_rating_after_update"
+    " AFTER UPDATE ON review"
+    " FOR EACH ROW"
+    " UPDATE service_provider AS sp SET sp.rating = (SELECT AVG(r.rating) FROM review AS r WHERE r.service_provider_id = sp.id) WHERE sp.id = NEW.service_provider_id;"
+    
+)
+
+
+delete_trigger = DDL(
+    
+    "CREATE TRIGGER update_rating_after_delete"
+    " AFTER DELETE ON review"
+    " FOR EACH ROW"
+    " UPDATE service_provider AS sp SET sp.rating = (SELECT AVG(r.rating) FROM review AS r WHERE r.service_provider_id = sp.id) WHERE sp.id = OLD.service_provider_id;"
+    
+)
+
 event.listen(
     Review.__table__,
     'after_create',
-    trigger
+    insert_trigger
+)
+
+event.listen(
+    Review.__table__,
+    'after_create',
+    update_trigger
+)
+
+
+event.listen(
+    Review.__table__,
+    'after_create',
+    delete_trigger
 )
