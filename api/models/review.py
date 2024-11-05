@@ -1,5 +1,5 @@
 
-from sqlalchemy import Column, ForeignKey, Integer, String, DECIMAL, DATETIME
+from sqlalchemy import Column, ForeignKey, Integer, String, DECIMAL, DATETIME, event, DDL, Select
 from dependencies.database import Base
 from sqlalchemy.orm import relationship
 
@@ -15,3 +15,18 @@ class Review(Base):
     customer = relationship("Customer")
     service_provider = relationship("ServiceProvider")
     
+    
+trigger = DDL(
+    
+    "CREATE TRIGGER update_rating_after_insert"
+    " AFTER INSERT ON review"
+    " FOR EACH ROW"
+    " UPDATE service_provider AS sp SET sp.rating = (SELECT AVG(r.rating) FROM review AS r WHERE r.service_provider_id = sp.id) WHERE sp.id = NEW.service_provider_id;"
+    
+)
+
+event.listen(
+    Review.__table__,
+    'after_create',
+    trigger
+)
