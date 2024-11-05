@@ -12,5 +12,6 @@ class Review(Base):
     review = Column(String(1000), nullable=True)
     rating = Column(DECIMAL(5,2), nullable=True)
 
-
+    customer = relationship("Customer")
+    service_provider = relationship("ServiceProvider")
     

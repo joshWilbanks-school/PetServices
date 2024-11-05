@@ -1,6 +1,7 @@
 import datetime
 from typing import Optional
-from schemas.user import User
+from schemas.customer import Customer
+from schemas.service_provider import ServiceProvider
 from pydantic import BaseModel
 
 
@@ -27,7 +28,8 @@ class ReviewUpdate(BaseModel):
 
 
 class Review(ReviewBase):
-    pass
+    customer: Customer = None
+    service_provider: ServiceProvider = None
 
     class ConfigDict:
         from_attributes = True
