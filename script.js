@@ -19,7 +19,7 @@ function toggleSidebar() {
     if (sidebar.classList.contains('collapsed')) {
         toggleButton.style.display = 'block';
     } else {
-        toggleButton.style.display = 'block'; // Keep it visible after toggle
+        toggleButton.style.display = 'block'; 
     }
 }
 function toggleNavbar() {
