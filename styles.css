@@ -1,0 +1,343 @@
+/* General Styling */
+body {
+    background-color: #999999;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.main-content {
+    margin-left: 250px; /* Default width when sidebar is open */
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+.toggle-btn {
+    position: fixed; 
+    top: 20px;
+    left: 20px;
+    z-index: 1000; 
+    background-color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.sidebar {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 250px; /* Adjust width */
+    height: 100%;
+    background-color: #333;
+    transition: width 0.3s ease;
+}
+/* Toggle button (three lines) styles */
+
+.toggle-btn {
+    position: fixed; 
+    top: 20px; 
+    left: 20px; 
+    z-index: 1000; 
+    background-color: #333; 
+    color: white;
+    border: none; 
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* Navbar styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; /* Full width of sidebar when open */
+    height: 100%;
+    background-color: #333;
+    transition: transform 0.3s ease; /* Smooth slide effect */
+    transform: translateX(0); /* Default: visible */
+}
+
+.navbar.collapsed {
+    transform: translateX(-250px); /* Move out of view */
+}
+
+/* Main content to shift when navbar opens */
+
+.navbar.collapsed + .main-content {
+    margin-left: 0; /* Shift content back when navbar is collapsed */
+}
+
+.sidebar.collapsed {
+    width: 50px; /* Adjust for collapsed width */
+}
+
+.sidebar.collapsed ul {
+    display: none; /* Hide the sidebar content when collapsed */
+}
+
+.sidebar.collapsed .toggle-btn {
+    left: 20px; /* Keep the toggle button in the same position */
+    display: block; /* Ensure the button remains visible */
+}
+
+.main-content {
+    margin-left: 250px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed + .main-content {
+    margin-left: 50px; /* Adjust main content margin when sidebar is collapsed */
+}
+
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: width 0.3s ease;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #111;
+}
+
+.toggle-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.toggle-btn:hover {
+    background-color: #111;
+}
+
+/* Collapsed sidebar styles */
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.sidebar.collapsed a {
+    font-size: 0;
+    padding: 10px 0;
+}
+
+.sidebar.collapsed .toggle-btn {
+    left: 70px;
+}
+
+.main-content.collapsed {
+    margin-left: 60px; /* Adjust the margin when sidebar is collapsed */
+}
+
+/* Modal and other section styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    text-align: center;
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-section, .signup-section {
+    width: 48%;
+}
+
+input {
+    display: block;
+    width: 95%;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #111;
+}
+
+.content-section {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color:#f9f9f9;
+    border: 2px solid #333;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto; 
+    text-align: center;
+    color: #333;
+
+}
+h2 {
+    color: #000; /* Black */
+}
+
+.email-link {
+    color: #007BFF; /* A soft blue color for links */
+    text-decoration: none;
+}
+
+.email-link:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.phone-number {
+    font-weight: bold; /* Bold for emphasis */
+}
+.write-button {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.write-button:hover {
+    background-color: gray;
+}
+.social-media ul {
+    list-style: none;
+    padding-left: 0;
+}
+.social-media li {
+    display: inline;
+    margin-right: 10px;
+}
+.social-media a {
+    text-decoration: none;
+    color: black;
+}
+
+.social-media a:hover {
+    text-decoration: underline;
+}
+
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.pet-type-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.pet-type-container label {
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.pet-type-container input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Styling for the review form */
+#review-form {
+    margin: 20px 0;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#review-form div {
+    margin-bottom: 10px;
+}
+
+#review-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#review-form input, #review-form select, #review-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#review-form button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#review-form button:hover {
+    background-color: #111;
+}
+.login-logo {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+#reviews div label, #reviews div select {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#reviews div select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #f4f4f4;
+}

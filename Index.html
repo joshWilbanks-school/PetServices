@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Services Homepage</title>
-    <link rel="stylesheet" href="index.css"> <!-- Linking the external CSS file -->
+    <link rel="stylesheet" href="styles.css"> <!-- Linking the external CSS file -->
 </head>
 <body>
     <!-- Sidebar -->
@@ -24,7 +24,7 @@
         </nav>
     </div>
 
-    <!-- Main Content -->
+   
     <div id="main-content" class="main-content">
         <!-- Logout Button -->
         <button id="logout-btn" style="display: none;" onclick="logout()">Logout</button>
@@ -112,6 +112,25 @@
             <h2>Customer Reviews</h2>
             <p>Check out what our customers have to say!</p>
         
+            <!-- Sorting and Filtering Options -->
+            <div>
+                <label for="sort-options">Sort by:</label>
+                <select id="sort-options" onchange="sortReviews()">
+                    <option value="date">Date</option>
+                    <option value="rating">Rating</option>
+                </select>
+        
+                <label for="filter-rating">Filter by rating:</label>
+                <select id="filter-rating" onchange="filterReviews()">
+                    <option value="all">All</option>
+                    <option value="5">★★★★★</option>
+                    <option value="4">★★★★</option>
+                    <option value="3">★★★</option>
+                    <option value="2">★★</option>
+                    <option value="1">★</option>
+                </select>
+            </div>
+        
             <!-- Review Input Form -->
             <form id="review-form" onsubmit="addReview(event)">
                 <div>
@@ -129,25 +148,29 @@
                     </select>
                 </div>
                 <div>
+                    <label for="review-date">Date:</label>
+                    <input type="date" id="review-date" required>
+                </div>
+                <div>
                     <label for="review-message">Your Review:</label>
                     <textarea id="review-message" placeholder="Enter your review" required></textarea>
                 </div>
                 <button type="submit">Submit Review</button>
             </form>
-
+        
             <!-- Reviews List -->
             <ul id="reviews-list">
                 <!-- Reviews will be dynamically added here -->
             </ul>
         </div>
 
-        <!-- Footer -->
+        
         <footer>
             <p>&copy; 2024 Pet Services</p>
         </footer>
     </div>
 
-    <!-- Linking the external JavaScript file -->
+    
     <script src="script.js"></script>
 </body>
 </html>
