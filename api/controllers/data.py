@@ -2,8 +2,9 @@ from fastapi import APIRouter, Depends, FastAPI, status, Response
 from fastapi import HTTPException, status, Response, Depends
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
-from models import animal_type as s_animal_type, customer as s_customer, review as s_review, service_provider as s_service_provider
-from models import service_type as s_service_type, service as s_service, time_measurement as s_time_measurement, user_type as s_user_type, user as s_user
+from models import animal_type as m_animal_type, customer as m_customer, review as m_review, service_provider as m_service_provider
+from models import service_type as m_service_type, service as m_service, time_measurement as m_time_measurement, user_type as m_user_type, user as m_user
+from models import pet as m_pet
 
 
 
@@ -29,11 +30,11 @@ from models import service_type as s_service_type, service as s_service, time_me
 def create(db: Session):
            
     #create the user types
-    user_type_customer: s_user_type.UserType = s_user_type.UserType(
+    user_type_customer: m_user_type.UserType = m_user_type.UserType(
         type="customer"
     )
 
-    user_type_service_provider: s_user_type.UserType = s_user_type.UserType(
+    user_type_service_provider: m_user_type.UserType = m_user_type.UserType(
         type="service_provider"
     )
 
@@ -49,7 +50,7 @@ def create(db: Session):
 
 
     #create a customer
-    user_customer: s_user.User = s_user.User(
+    user_customer: m_user.User = m_user.User(
         first_name="john",
         last_name="doe",
         age=25,
@@ -67,7 +68,7 @@ def create(db: Session):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
 
     #create a service provider
-    user_service_provider: s_user.User = s_user.User(
+    user_service_provider: m_user.User = m_user.User(
         first_name="jane",
         last_name="smith",
         age=22,
@@ -84,11 +85,11 @@ def create(db: Session):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
 
     #create a service_provider and customer from the users
-    customer: s_customer.Customer = s_customer.Customer(
+    customer: m_customer.Customer = m_customer.Customer(
         user_id=1
     )
 
-    service_provider: s_service_provider.ServiceProvider = s_service_provider.ServiceProvider(
+    service_provider: m_service_provider.ServiceProvider = m_service_provider.ServiceProvider(
         user_id=2,
         rating=0,
         title="Jane's Dog Walking",
@@ -106,7 +107,7 @@ def create(db: Session):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
 
     #create an animal type
-    animal_type: s_animal_type.AnimalType = s_animal_type.AnimalType(
+    animal_type: m_animal_type.AnimalType = m_animal_type.AnimalType(
         type="Dog"
     )
 
@@ -120,7 +121,7 @@ def create(db: Session):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
 
     #create a service type
-    service_type: s_service_type.ServiceType = s_service_type.ServiceType(
+    service_type: m_service_type.ServiceType = m_service_type.ServiceType(
         type="Walking"
     )
 
@@ -133,7 +134,7 @@ def create(db: Session):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
 
     #create a time measurement (days / hours / weeks)
-    time_measurement: s_time_measurement.TimeMeasurement = s_time_measurement.TimeMeasurement(
+    time_measurement: m_time_measurement.TimeMeasurement = m_time_measurement.TimeMeasurement(
         type="Day"
     )
     try:
@@ -146,7 +147,7 @@ def create(db: Session):
 
 
     #create a service
-    service: s_service.Service = s_service.Service(
+    service: m_service.Service = m_service.Service(
         price=24.99,
         user_id=2,
         service_type_id=1,
@@ -163,7 +164,7 @@ def create(db: Session):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
 
     #create a review
-    review: s_review.Review = s_review.Review(
+    review: m_review.Review = m_review.Review(
         customer_id=1,
         service_provider_id=1,
         review="Great!",
@@ -177,3 +178,20 @@ def create(db: Session):
     except SQLAlchemyError as e:
         error = str(e)
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+    
+    #create a pet
+    pet: m_pet.Pet = m_pet.Pet(
+        user_id=1,
+        animal_type_id=1,
+        name="Bruno",
+        picture="null"
+    )
+
+    try:
+        db.add(pet)
+        db.commit()
+        db.refresh(pet)
+    except SQLAlchemyError as e:
+        error = str(e)
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+    

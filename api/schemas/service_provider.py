@@ -13,7 +13,6 @@ class ServiceProviderBase(BaseModel):
 
 class ServiceProviderCreate(BaseModel):
     user_id: int
-    rating: float
     title: str
     biography: str
 
