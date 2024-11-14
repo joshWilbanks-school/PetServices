@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, FastAPI, status, Response
 from sqlalchemy.orm import Session
 from controllers import customer as controller
-from schemas import customer as schema
+from schemas import customer as schema, user
 from dependencies.database import engine, get_db
 
 router = APIRouter(
@@ -15,6 +15,11 @@ def create(request: schema.CustomerCreate, db: Session = Depends(get_db)):
     customer: schema.Customer =  controller.create(db=db, request=request)
     return customer
 
+
+@router.post("/create_with_user", response_model=schema.Customer)
+def create(request: user.UserCreate, db: Session = Depends(get_db)):
+    customer: schema.Customer =  controller.create_with_user(db=db, request=request)
+    return customer
 
 @router.get("/", response_model=list[schema.Customer])
 def read_all(db: Session = Depends(get_db)):

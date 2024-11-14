@@ -1,6 +1,7 @@
 import datetime
 from typing import Optional
 from schemas.user import User, UserCreate
+from schemas import user
 from pydantic import BaseModel
 
 
@@ -22,6 +23,11 @@ class ServiceProviderUpdate(BaseModel):
     rating: Optional[float] = None
     title: Optional[str] = None
     biography: Optional[str] = None
+
+class ServiceProviderCreateWithUser(user.UserCreate):
+    user_id: int
+    title: str
+    biography: str
 
 
 class ServiceProvider(ServiceProviderBase):
