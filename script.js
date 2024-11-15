@@ -19,7 +19,7 @@ function toggleSidebar() {
     if (sidebar.classList.contains('collapsed')) {
         toggleButton.style.display = 'block';
     } else {
-        toggleButton.style.display = 'block'; // Keep it visible after toggle
+        toggleButton.style.display = 'block'; 
     }
 }
 function toggleNavbar() {
@@ -32,11 +32,6 @@ function toggleNavbar() {
     // Ensure the main content adjusts accordingly
     mainContent.classList.toggle('collapsed');
 }
-
-
-
-
-
 
 // Handle login
 function login() {
@@ -142,55 +137,92 @@ function updateServiceDescriptions() {
     }
 }
 
-// Load reviews based on pet type
+let reviews = []; // Store reviews globally
+
 function loadReviews() {
+    // Sample data for initial reviews
+    reviews = selectedPetType === 'dog' ? [
+        { name: 'Artemisia', rating: 5, review: 'Excellent service! My dog loved the grooming.', date: new Date('2024-01-15') },
+        { name: 'Balthazar', rating: 4, review: 'Great experience, would recommend!', date: new Date('2024-02-20') },
+        { name: 'Cressida', rating: 5, review: 'My dog came back looking fabulous!', date: new Date('2024-03-10') }
+    ] : [
+        { name: 'Dorian', rating: 5, review: 'The cat grooming service was superb!', date: new Date('2024-04-05') },
+        { name: 'Elysia', rating: 3, review: 'Decent service, but my cat was a bit anxious.', date: new Date('2024-05-12') },
+        { name: 'Thaddeus', rating: 4, review: 'Great care taken for my kitty, thank you!', date: new Date('2024-06-22') }
+    ];
+
+    applyFiltersAndSorting();
+}
+
+function displayReviews(filteredReviews) {
     const reviewsList = document.getElementById('reviews-list');
     reviewsList.innerHTML = ''; // Clear existing reviews
 
-    // Sample reviews based on pet type
-    const dogReviews = [
-        { name: 'Artemisia', rating: 5, review: 'Excellent service! My dog loved the grooming.' },
-        { name: 'Balthazar', rating: 4, review: 'Great experience, would recommend!' },
-        { name: 'Cressida', rating: 5, review: 'My dog came back looking fabulous!' },
-    ];
-
-    const catReviews = [
-        { name: 'Dorian', rating: 5, review: 'The cat grooming service was superb!' },
-        { name: 'Elysia', rating: 3, review: 'Decent service, but my cat was a bit anxious.' },
-        { name: 'Thaddeus', rating: 4, review: 'Great care taken for my kitty, thank you!' },
-    ];
-
-    const reviews = selectedPetType === 'dog' ? dogReviews : catReviews;
-
-    reviews.forEach(review => {
+    filteredReviews.forEach(review => {
         const li = document.createElement('li');
-        li.innerHTML = `<strong>${review.name}</strong> <span class="star-rating">${'★'.repeat(review.rating)}</span><p>${review.review}</p>`;
+        li.innerHTML = `<strong>${review.name}</strong> <span class="star-rating">${'★'.repeat(review.rating)}</span>
+                        <span>(${review.date.toLocaleDateString()})</span><p>${review.review}</p>`;
         reviewsList.appendChild(li);
     });
 }
 
-// Handle adding a review
+function sortReviews() {
+    applyFiltersAndSorting(); // Reapply filters and sorting
+}
+
+function filterReviews() {
+    applyFiltersAndSorting(); // Reapply filters and sorting
+}
+
+function applyFiltersAndSorting() {
+    const sortOption = document.getElementById('sort-options').value;
+    const filterRating = document.getElementById('filter-rating').value;
+
+    // Filter reviews based on the selected rating
+    let filteredReviews = reviews.filter(review =>
+        filterRating === 'all' || review.rating === parseInt(filterRating)
+    );
+
+    // Sort filtered reviews
+    if (sortOption === 'rating') {
+        filteredReviews.sort((a, b) => b.rating - a.rating); // Sort by rating descending
+    } else if (sortOption === 'date') {
+        filteredReviews.sort((a, b) => b.date - a.date); // Sort by date descending
+    }
+
+    displayReviews(filteredReviews);
+}
+
 function addReview(event) {
-    event.preventDefault(); // Prevent the form from refreshing the page
+    event.preventDefault(); // Prevent form submission from refreshing the page
     
     const name = document.getElementById('review-name').value;
-    const rating = document.getElementById('review-rating').value;
+    const rating = parseInt(document.getElementById('review-rating').value);
     const message = document.getElementById('review-message').value;
+    const dateInput = document.getElementById('review-date').value;
 
-    if (name && rating && message) {
-        // Create a new review element
-        const reviewList = document.getElementById('reviews-list');
-        const reviewItem = document.createElement('li');
-        
-        // Build the review HTML structure
-        reviewItem.innerHTML = `<strong>${name}</strong><span class="star-rating">${'★'.repeat(rating)}</span><p>${message}</p>`;
-        
-        // Append the new review to the list
-        reviewList.appendChild(reviewItem);
+    if (name && rating && message && dateInput) {
+        // Convert date input to Date object
+        const date = new Date(dateInput);
 
-        // Clear the form
+        // Create a new review object
+        const newReview = {
+            name: name,
+            rating: rating,
+            review: message,
+            date: date
+        };
+
+        // Add the new review to the global reviews array
+        reviews.push(newReview);
+
+        // Clear the form fields
         document.getElementById('review-name').value = '';
         document.getElementById('review-rating').value = '5';
         document.getElementById('review-message').value = '';
+        document.getElementById('review-date').value = '';
+
+        // Reapply sorting and filtering to include the new review
+        applyFiltersAndSorting();
     }
 }
