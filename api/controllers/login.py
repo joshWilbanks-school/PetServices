@@ -43,6 +43,16 @@ def read_one(db: Session, login_id: int):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
     return item
 
+def get_by_user_id(db: Session, user_id: int):
+    try:
+        item = db.query(model.Login).filter(model.Login.user_id == user_id).first()
+        if not item:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Id not found!")
+    except SQLAlchemyError as e:
+        error = str(e.__dict__['orig'])
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+    return item
+
 
 def update(db: Session, login_id: int, request):
     try:

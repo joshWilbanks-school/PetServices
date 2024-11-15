@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, FastAPI, status, Response
 from fastapi import HTTPException, status, Response, Depends
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
-from models import animal_type as m_animal_type, customer as m_customer, review as m_review, service_provider as m_service_provider
+from models import animal_type as m_animal_type, customer as m_customer, review as m_review, service_provider as m_service_provider, login as m_login
 from models import service_type as m_service_type, service as m_service, time_measurement as m_time_measurement, user_type as m_user_type, user as m_user
 from models import pet as m_pet
 
@@ -195,3 +195,16 @@ def create(db: Session):
         error = str(e)
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
     
+    #create a login
+    login: m_login.Login = m_login.Login(
+        user_id=1,
+        password_hash="5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
+    )
+
+    try:
+        db.add(login)
+        db.commit()
+        db.refresh(login)
+    except SQLAlchemyError as e:
+        error = str(e)
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)

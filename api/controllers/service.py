@@ -33,6 +33,14 @@ def read_all(db: Session):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
     return result
 
+def get_all_by_user_id(db: Session, user_id: int):
+    try:
+        result = db.query(model.Service).filter(model.Service.user_id == user_id).all()
+    except SQLAlchemyError as e:
+        error = str(e)
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+    return result
+
 
 def read_one(db: Session, service_id: int):
     try:

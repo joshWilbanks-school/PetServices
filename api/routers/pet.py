@@ -20,6 +20,10 @@ def create(request: schema.PetCreate, db: Session = Depends(get_db)):
 def read_all(db: Session = Depends(get_db)):
     return controller.read_all(db)
 
+@router.get("/get_all_by_user_id/{user_id}", response_model=list[schema.Pet])
+def read_all( user_id: int, db: Session = Depends(get_db)):
+    return controller.get_all_by_user_id(db, user_id)
+
 
 @router.get("/{pet_id}", response_model=schema.Pet)
 def read_one(pet_id: int, db: Session = Depends(get_db)):

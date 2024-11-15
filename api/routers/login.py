@@ -25,6 +25,10 @@ def read_all(db: Session = Depends(get_db)):
 def read_one(login_id: int, db: Session = Depends(get_db)):
     return controller.read_one(db, login_id=login_id)
 
+@router.get("/get_by_user_id/{user_id}", response_model=schema.Login)
+def read_one(user_id: int, db: Session = Depends(get_db)):
+    return controller.get_by_user_id(db, user_id=user_id)
+
 
 @router.put("/{login_id}", response_model=schema.Login)
 def update(login_id: int, request: schema.LoginUpdate, db: Session = Depends(get_db)):
