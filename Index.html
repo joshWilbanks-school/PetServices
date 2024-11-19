@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Services Homepage</title>
     <link rel="stylesheet" href="styles.css"> <!-- Linking the external CSS file -->
+    <link rel="stylesheet" href="styles2.css"> <!-- New dog grooming stylesheet -->
+
 </head>
 <body>
     <!-- Sidebar -->
@@ -71,23 +73,205 @@
             </div>
         </section>
 
-        <!-- Grooming Section -->
-        <div id="grooming" class="content-section" style="display: none;">
-            <h2>Grooming</h2>
-            <p id="grooming-description">Our grooming services ensure that your pet looks and feels their best. We offer thorough bathing, professional fur trimming, and nail clipping. Our experienced groomers use gentle techniques to pamper your pet, providing a relaxing experience while keeping their coat healthy and shiny.</p>
+        <section id="cat-grooming-section" class="content-section" style="display: none;">
+            <h2>Cat Grooming Services</h2>
+            <p>We offer specialized grooming services for cats including bathing, nail trimming, and fur brushing. Our experienced team ensures your cat looks and feels their best!</p>
+        
+            <!-- Slideshow for Cat Grooming with Arrow Container -->
+            <div class="slideshow-container cat-slideshow">
+                <div class="slide fade cat-slide">
+                    <img src="images/cat-grooming1.png" alt="Cat Grooming 1" class="slide-image">
+                </div>
+                <div class="slide fade cat-slide">
+                    <img src="images/cat-grooming2.png" alt="Cat Grooming 2" class="slide-image">
+                </div>
+                <div class="slide fade cat-slide">
+                    <img src="images/cat-grooming3.png" alt="Cat Grooming 3" class="slide-image">
+                </div>
+        
+                <!-- Arrow container with controls -->
+                <div class="arrow-container">
+                    <a class="prev" onclick="changeCatSlide(-1)">&#10094;</a>
+                    <a class="next" onclick="changeCatSlide(1)">&#10095;</a>
+                </div>
+            </div>
+        
+            <!-- Dots to indicate slide -->
+            <div class="dots-container" style="text-align:center">
+                <span class="dot cat-dot" onclick="currentCatSlide(1)"></span> 
+                <span class="dot cat-dot" onclick="currentCatSlide(2)"></span> 
+                <span class="dot cat-dot" onclick="currentCatSlide(3)"></span> 
+            </div>
+        </section>
+        
+                        <!-- Dog Grooming Section -->
+        <section id="dog-grooming-section" class="content-section" style="display: none;">
+            <h2>Dog Grooming Services</h2>
+            <p>We offer dog grooming services including bathing, fur trimming, and nail clipping. Our professional groomers provide a relaxing experience for your dog, ensuring their coat is healthy and shiny.</p>
+        
+            <!-- Slideshow for Dog Grooming with Arrow Container -->
+            <div class="slideshow-container dog-slideshow">
+                <div class="slide fade dog-slide">
+                    <img src="images/dog-grooming1.png" alt="Dog Grooming 1" class="slide-image">
+                </div>
+                <div class="slide fade dog-slide">
+                    <img src="images/dog-grooming2.png" alt="Dog Grooming 2" class="slide-image">
+                </div>
+                <div class="slide fade dog-slide">
+                    <img src="images/dog-grooming3.png" alt="Dog Grooming 3" class="slide-image">
+                </div>
+        
+                <!-- Arrow container with controls -->
+                <div class="arrow-container">
+                    <a class="prev" onclick="changeDogSlide(-1)">&#10094;</a>
+                    <a class="next" onclick="changeDogSlide(1)">&#10095;</a>
+                </div>
+            </div>
+        
+            <!-- Dots to indicate slide -->
+            <div class="dots-container" style="text-align:center">
+                <span class="dot dog-dot" onclick="currentDogSlide(1)"></span> 
+                <span class="dot dog-dot" onclick="currentDogSlide(2)"></span> 
+                <span class="dot dog-dot" onclick="currentDogSlide(3)"></span> 
+            </div>
+        </section>
+        <section id="cat-walking-section" class="content-section" style="display: none;">
+            <h2>Cat Walking Services</h2>
+            <p>Our cat walking services ensure your feline friend gets the exercise and stimulation they need while staying safe and happy. We offer specialized routes designed for cats to explore safely!</p>
+        
+            <!-- Slideshow Gallery -->
+            <div class="slideshow-container">
+                <!-- Slide 1 -->
+                <div class="slide cat-walking-slide">
+                    <img src="images/cat-walking1.png" alt="Cat Walking 1" class="slide-image">
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide cat-walking-slide">
+                    <img src="images/cat-walking2.png" alt="Cat Walking 2" class="slide-image">
+                </div>
+                <!-- Slide 3 -->
+                <div class="slide cat-walking-slide">
+                    <img src="images/cat-walking3.png" alt="Cat Walking 3" class="slide-image">
+                </div>
+        
+                <!-- Arrow Container -->
+                <div class="arrow-container">
+                    <a class="prev" onclick="changeCatWalkingSlide(-1)">&#10094;</a>
+                    <a class="next" onclick="changeCatWalkingSlide(1)">&#10095;</a>
+                </div>
+            </div>
+        
+            <!-- Dots Navigation -->
+            <div class="dots-container" style="text-align: center;">
+                <span class="dot cat-walking-dot" onclick="currentCatWalkingSlide(1)"></span>
+                <span class="dot cat-walking-dot" onclick="currentCatWalkingSlide(2)"></span>
+                <span class="dot cat-walking-dot" onclick="currentCatWalkingSlide(3)"></span>
+            </div>
+        </section>
+        
+
+        
+       
+
+        <section id="dog-walking-section" class="content-section" style="display: none;">
+            <h2>Dog Walking Services</h2>
+            <p>Our dog walking services provide exercise, companionship, and fun for your canine friend. Each walk is tailored to suit your dog's energy level and needs!</p>   
+       <div class="slideshow-container">
+        <!-- Slide 1 -->
+        <div class="slide dog-walking-slide">
+            <img src="images/dog-walking1.png" alt="Dog Walking 1" class="slide-image">
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide dog-walking-slide">
+            <img src="images/dog-walking2.png" alt="Dog Walking 2" class="slide-image">
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide dog-walking-slide">
+            <img src="images/dog-walking3.png" alt="Dog Walking 3" class="slide-image">
         </div>
 
-        <!-- Walking Section -->
-        <div id="walking" class="content-section" style="display: none;">
-            <h2>Walking</h2>
-            <p id="walking-description">Our dog walking services are tailored to provide exercise and companionship for your furry friend. Each walk is customized to your dog's energy level and needs, ensuring they stay active and happy. Our professional walkers are trained to manage different breeds and temperaments, making each outing enjoyable.</p>
+        <!-- Arrow Container -->
+        <div class="arrow-container">
+            <a class="prev" onclick="changeDogWalkingSlide(-1)">&#10094;</a>
+            <a class="next" onclick="changeDogWalkingSlide(1)">&#10095;</a>
         </div>
+    </div>
 
-        <!-- Sitting Section -->
-        <div id="sitting" class="content-section" style="display: none;">
-            <h2>Sitting</h2>
-            <p id="sitting-description">Our pet sitting services offer peace of mind while you're away. We provide personalized care that includes feeding, playtime, and companionship. Your pet will receive one-on-one attention in a familiar environment, ensuring they feel safe and loved until you return.</p>
-        </div>
+    <!-- Dots Navigation -->
+    <div class="dots-container" style="text-align: center;">
+        <span class="dot dog-walking-dot" onclick="currentDogWalkingSlide(1)"></span>
+        <span class="dot dog-walking-dot" onclick="currentDogWalkingSlide(2)"></span>
+        <span class="dot dog-walking-dot" onclick="currentDogWalkingSlide(3)"></span>
+    </div>
+
+        </section>
+        <section id="cat-sitting-section" class="content-section" style="display: none;">
+            <h2>Cat Sitting Services</h2>
+            <p>Our cat sitting services provide your feline friend with care and companionship while you're away. We ensure they receive feeding, playtime, and the attention they deserve!</p>
+        
+            <!-- Slideshow for Cat Sitting with Arrow Container -->
+            <div class="slideshow-container cat-sitting-slideshow">
+                <div class="slide fade cat-sitting-slide">
+                    <img src="images/cat-sitting1.png" alt="Cat Sitting 1" class="slide-image">
+                </div>
+                <div class="slide fade cat-sitting-slide">
+                    <img src="images/cat-sitting2.png" alt="Cat Sitting 2" class="slide-image">
+                </div>
+                <div class="slide fade cat-sitting-slide">
+                    <img src="images/cat-sitting3.png" alt="Cat Sitting 3" class="slide-image">
+                </div>
+        
+                <!-- Arrow container with controls -->
+                <div class="arrow-container">
+                    <a class="prev" onclick="changeCatSittingSlide(-1)">&#10094;</a>
+                    <a class="next" onclick="changeCatSittingSlide(1)">&#10095;</a>
+                </div>
+            </div>
+        
+            <!-- Dots to indicate slide -->
+            <div class="dots-container" style="text-align: center;">
+                <span class="dot cat-sitting-dot" onclick="currentCatSittingSlide(1)"></span>
+                <span class="dot cat-sitting-dot" onclick="currentCatSittingSlide(2)"></span>
+                <span class="dot cat-sitting-dot" onclick="currentCatSittingSlide(3)"></span>
+            </div>
+        </section>
+        <section id="dog-sitting-section" class="content-section" style="display: none;">
+            <h2>Dog Sitting Services</h2>
+            <p>Our dog sitting services ensure your canine companion feels loved and cared for while you're away. From feeding to playtime, we provide everything your dog needs!</p>
+        
+            <!-- Slideshow for Dog Sitting with Arrow Container -->
+            <div class="slideshow-container dog-sitting-slideshow">
+                <div class="slide fade dog-sitting-slide">
+                    <img src="images/dog-sitting1.png" alt="Dog Sitting 1" class="slide-image">
+                </div>
+                <div class="slide fade dog-sitting-slide">
+                    <img src="images/dog-sitting2.png" alt="Dog Sitting 2" class="slide-image">
+                </div>
+                <div class="slide fade dog-sitting-slide">
+                    <img src="images/dog-sitting3.png" alt="Dog Sitting 3" class="slide-image">
+                </div>
+        
+                <!-- Arrow container with controls -->
+                <div class="arrow-container">
+                    <a class="prev" onclick="changeDogSittingSlide(-1)">&#10094;</a>
+                    <a class="next" onclick="changeDogSittingSlide(1)">&#10095;</a>
+                </div>
+            </div>
+        
+            <!-- Dots to indicate slide -->
+            <div class="dots-container" style="text-align: center;">
+                <span class="dot dog-sitting-dot" onclick="currentDogSittingSlide(1)"></span>
+                <span class="dot dog-sitting-dot" onclick="currentDogSittingSlide(2)"></span>
+                <span class="dot dog-sitting-dot" onclick="currentDogSittingSlide(3)"></span>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+
+
 
         <!-- Contact Section -->
         <div id="contact" class="content-section" style="display: none;">
