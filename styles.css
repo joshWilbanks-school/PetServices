@@ -215,7 +215,7 @@ body {
 
 /* Collapsed sidebar styles */
 .sidebar.collapsed {
-    width: 60px;
+    width: 65px;
 }
 
 .sidebar.collapsed a {
@@ -223,8 +223,8 @@ body {
     padding: 10px 0;
 }
 
-.sidebar.collapsed .toggle-btn {
-    left: 70px;
+.sidebar.collapsed {
+    left: 0px;
 }
 
 .main-content.collapsed {

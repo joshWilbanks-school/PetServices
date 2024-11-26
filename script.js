@@ -311,12 +311,17 @@ function toggleSidebar() {
 function toggleNavbar() {
     const navbar = document.getElementById('navbar');
     const mainContent = document.getElementById('main-content');
+    const sideBar = document.getElementById('sidebar');
 
     // Toggle the collapsed class on the navbar
     navbar.classList.toggle('collapsed');
 
     // Ensure the main content adjusts accordingly
     mainContent.classList.toggle('collapsed');
+
+    //toggle the side bar to closed
+    sideBar.classList.toggle('collapsed');
+
 }
 
 // Handle login

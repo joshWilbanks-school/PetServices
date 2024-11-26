@@ -18,7 +18,7 @@ def create(request: schema.CustomerCreate, db: Session = Depends(get_db)):
 
 @router.post("/create_with_user", response_model=schema.Customer)
 def create(request: user.UserCreate, db: Session = Depends(get_db)):
-    customer: schema.Customer =  controller.create_with_user(db=db, request=request)
+    customer: schema.Customer = controller.create_with_user(db=db, request=request)
     return customer
 
 @router.get("/", response_model=list[schema.Customer])
