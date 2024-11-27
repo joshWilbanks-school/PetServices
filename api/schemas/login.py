@@ -13,6 +13,10 @@ class LoginCreate(BaseModel):
     user_id: int
     password_hash: str
 
+class SignUp(BaseModel):
+    user_name: str
+    password_hash: str
+    user_type_id: int
 
 class LoginUpdate(BaseModel):
     user_id: Optional[int] = None

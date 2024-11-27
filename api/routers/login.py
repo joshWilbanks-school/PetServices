@@ -15,6 +15,11 @@ def create(request: schema.LoginCreate, db: Session = Depends(get_db)):
     login: schema.Login =  controller.create(db=db, request=request)
     return login
 
+@router.post("/signup", response_model=schema.User)
+def create(request: schema.SignUp, db: Session = Depends(get_db)):
+    login: user.User =  controller.sign_up(db=db, request=request)
+    return login
+
 
 @router.get("/", response_model=list[schema.Login])
 def read_all(db: Session = Depends(get_db)):

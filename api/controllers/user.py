@@ -7,6 +7,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 def create(db: Session, request: schema.UserCreate):
     new_item = model.User(
+        user_name=request.user_name,
         first_name=request.first_name,
         last_name=request.last_name,
         age=request.age,
@@ -33,6 +34,15 @@ def read_all(db: Session):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
     return result
 
+def get_user_by_username(db: Session, name: str):
+    try:
+        item = db.query(model.User).filter(model.User.user_name == name).first()
+        if not item:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Id not found!")
+    except SQLAlchemyError as e:
+        error = str(e.__dict__['orig'])
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+    return item
 
 def read_one(db: Session, user_id: int):
     try:
@@ -43,7 +53,6 @@ def read_one(db: Session, user_id: int):
         error = str(e.__dict__['orig'])
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
     return item
-
 
 def update(db: Session, user_id: int, request):
     try:

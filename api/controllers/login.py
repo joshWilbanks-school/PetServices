@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, NO_VALUE
 from fastapi import HTTPException, status, Response, Depends
 from models import login as model
 from schemas import login as schema, user
@@ -23,6 +23,14 @@ def create(db: Session, request: schema.LoginCreate):
 
     return new_item
 
+def sign_up(db: Session, request: schema.SignUp):
+    userC = user.UserCreate(user_name=request.user_name, user_type_id=request.user_type_id, first_name=None, last_name=None, age=None, profile_picture=None)
+    userC = cUser.create(db=db, request=userC)
+
+    create(db=db, request=schema.LoginCreate(user_id=userC.id, password_hash=request.password_hash))
+
+    return userC
+    
 
 def read_all(db: Session):
     try:

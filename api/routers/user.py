@@ -15,6 +15,9 @@ def create(request: schema.UserCreate, db: Session = Depends(get_db)):
     user: schema.User =  controller.create(db=db, request=request)
     return user
 
+@router.get("/get_by_user_name/{user_name}", response_model=schema.User)
+def get_by_user_name(user_name: str, db: Session = Depends(get_db)):
+    return controller.get_user_by_username(db, name=user_name)
 
 @router.get("/", response_model=list[schema.User])
 def read_all(db: Session = Depends(get_db)):

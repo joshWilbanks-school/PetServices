@@ -51,6 +51,7 @@ def create(db: Session):
 
     #create a customer
     user_customer: m_user.User = m_user.User(
+        user_name="jd99",
         first_name="john",
         last_name="doe",
         age=25,
@@ -69,6 +70,7 @@ def create(db: Session):
 
     #create a service provider
     user_service_provider: m_user.User = m_user.User(
+        user_name="js24",
         first_name="jane",
         last_name="smith",
         age=22,
