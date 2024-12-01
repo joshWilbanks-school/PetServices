@@ -34,6 +34,8 @@
         <section id="welcome-section" class="content-section">
             <h2>Welcome to the Homepage</h2>
             <p>Let's get started!</p>
+            <!-- Book a Service Button -->
+            <button id="book-service-btn" class="book-service-btn" onclick="showBookingForm()">Book a Service</button>
         </section>
 
         <!-- Login/Signup Modal -->
@@ -347,7 +349,14 @@
             </ul>
         </div>
 
-        
+             <!-- Cart Section -->
+        <div id="cart-section" class="content-section" style="display: none;">
+            <h2>Your Cart</h2>
+            <ul id="cart-items"></ul>
+            <button id="checkout-btn" class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+
+
         <footer>
             <p>&copy; 2024 Pet Services</p>
         </footer>

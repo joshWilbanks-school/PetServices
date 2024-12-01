@@ -812,3 +812,113 @@ function addReview(event) {
         applyFiltersAndSorting();
     }
 }
+
+function showBookingForm() {
+    // Hide all sections
+    const sections = document.getElementsByClassName("content-section");
+    for (let i = 0; i < sections.length; i++) {
+        sections[i].style.display = "none";
+    }
+
+    // Show a booking form or section
+    const bookingSection = document.createElement("div");
+    bookingSection.id = "booking-section";
+    bookingSection.className = "content-section";
+    bookingSection.innerHTML = `
+        <h2>Book a Service</h2>
+        <form id="booking-form">
+            <label for="service-type">Select Service:</label>
+            <select id="service-type" required>
+                <option value="grooming">Grooming</option>
+                <option value="walking">Walking</option>
+                <option value="sitting">Sitting</option>
+            </select>
+            <label for="booking-date">Select Date:</label>
+            <input type="date" id="booking-date" required>
+            <label for="booking-time">Select Time:</label>
+            <input type="time" id="booking-time" required>
+            <button type="submit">Confirm Booking</button>
+        </form>
+    `;
+    document.getElementById("main-content").appendChild(bookingSection);
+
+    document.getElementById("booking-form").onsubmit = function (event) {
+        event.preventDefault();
+        alert("Service booked successfully!");
+        document.getElementById("booking-section").remove();
+        document.getElementById("welcome-section").style.display = "block";
+    };
+}
+
+bookingSection.innerHTML = `
+    <h2>Book a Service</h2>
+    <form id="booking-form">
+        <label for="service-type">Select Service:</label>
+        <select id="service-type" required>
+            <option value="grooming">Grooming</option>
+            <option value="walking">Walking</option>
+            <option value="sitting">Sitting</option>
+        </select>
+        <label for="booking-date">Select Date:</label>
+        <input type="date" id="booking-date" required>
+        <label for="booking-time">Select Time:</label>
+        <input type="time" id="booking-time" required>
+        <button type="button" onclick="addToCart()">Add to Cart</button>
+    </form>
+`;
+
+
+let cart = [];
+
+function addToCart() {
+    const serviceType = document.getElementById("service-type").value;
+    const bookingDate = document.getElementById("booking-date").value;
+    const bookingTime = document.getElementById("booking-time").value;
+
+    if (serviceType && bookingDate && bookingTime) {
+        const booking = {
+            serviceType,
+            bookingDate,
+            bookingTime,
+        };
+        cart.push(booking);
+        updateCartUI();
+        alert("Service added to cart!");
+    } else {
+        alert("Please fill out all booking details.");
+    }
+}
+
+function updateCartUI() {
+    const cartSection = document.getElementById("cart-section");
+    const cartItems = document.getElementById("cart-items");
+
+    cartItems.innerHTML = ""; // Clear existing items
+
+    cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            ${item.serviceType} on ${item.bookingDate} at ${item.bookingTime}
+            <button onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartItems.appendChild(li);
+    });
+
+    cartSection.style.display = cart.length ? "block" : "none"; // Show/hide cart
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1); // Remove item from cart
+    updateCartUI();
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+    }
+
+    alert("Checkout successful! Thank you for booking.");
+    cart = []; // Clear cart
+    updateCartUI(); // Refresh cart UI
+}
