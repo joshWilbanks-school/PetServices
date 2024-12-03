@@ -1,10 +1,6 @@
 let selectedPetType = '';
 const users = {}; // To store users' information
 
-// Show the login/signup modal on page load
-window.onload = function () {
-    document.getElementById('auth-modal').style.display = 'block';
-}
 // Function to select the pet type
 function selectPetType(type) {
     selectedPetType = type; // Save the selected pet type
@@ -334,7 +330,6 @@ function login() {
     } else if (users[username] === password) {
         document.getElementById('auth-modal').style.display = 'none'; // Hide modal
         document.getElementById('navbar').style.display = 'block'; // Show navbar
-        document.getElementById('logout-btn').style.display = 'block'; // Show logout button
         alert("Welcome, " + username + "!");
     } else {
         alert("Incorrect password. Please try again.");
@@ -436,7 +431,6 @@ function showWalkingSection(type) {
 // Logout function
 function logout() {
     document.getElementById('navbar').style.display = 'none'; // Hide navbar
-    document.getElementById('logout-btn').style.display = 'none'; // Hide logout button
     document.getElementById('auth-modal').style.display = 'block'; // Show modal
 
     // Clear all input fields

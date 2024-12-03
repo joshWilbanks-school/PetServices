@@ -6,6 +6,9 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.center-wrapper {
+    
+}
 
 /* Slideshow container */
 .slideshow-container {
@@ -184,7 +187,7 @@ body {
     transition: width 0.3s ease;
 }
 
-.sidebar a {
+.sidebar a, .sidebar button {
     padding: 10px 15px;
     text-decoration: none;
     font-size: 18px;
@@ -195,6 +198,9 @@ body {
 
 .sidebar a:hover {
     background-color: #111;
+}
+.sidebar img {
+    cursor: pointer;
 }
 
 .toggle-btn {
