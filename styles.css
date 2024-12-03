@@ -6,6 +6,12 @@ body {
     font-family: Arial, sans-serif;
 }
 
+<<<<<<< HEAD
+=======
+.center-wrapper {
+    
+}
+>>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
 
 /* Slideshow container */
 .slideshow-container {
@@ -184,7 +190,11 @@ body {
     transition: width 0.3s ease;
 }
 
+<<<<<<< HEAD
 .sidebar a {
+=======
+.sidebar a, .sidebar button {
+>>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
     padding: 10px 15px;
     text-decoration: none;
     font-size: 18px;
@@ -196,6 +206,12 @@ body {
 .sidebar a:hover {
     background-color: #111;
 }
+<<<<<<< HEAD
+=======
+.sidebar img {
+    cursor: pointer;
+}
+>>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
 
 .toggle-btn {
     position: absolute;
@@ -537,3 +553,76 @@ footer {
     border: 1px solid #ccc;
     background-color: #f4f4f4;
 }
+<<<<<<< HEAD
+=======
+
+.book-service-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.book-service-btn:hover {
+    background-color: #0056b3;
+}
+
+#cart-section {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 300px;
+    display: none; /* Hidden by default */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#cart-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#cart-items li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#cart-items li button {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#cart-items li button:hover {
+    background-color: darkred;
+}
+
+.checkout-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.checkout-btn:hover {
+    background-color: #218838;
+}
+>>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
