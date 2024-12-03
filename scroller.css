@@ -2,18 +2,37 @@
 .scroller-wrapper {
     left: 35%;
     width: 50%;
+    top: 0%;
     height: 93%;
     overflow: hidden;
     position: absolute;
+    min-width: 540px;
 }
 
-.scroller-wrapper-profile {
+@media (min-width: 1475px)
+{
+    .scroller-wrapper-profile {
+        
+        left: 60%;
+        top: 0%;
+        width: 38%;
+        height: 93%;
+        overflow: hidden;
+        position: absolute;
+        min-width: 540px;
+    }    
+
+}
+@media (max-width: 1474px) {
+    .scroller-wrapper-profile {
+        min-width: 540px;
+        width: fit-content;
+        margin-left: 2%;
+        height: 60%;
+        overflow: hidden;
+        position: sticky;
+    }
     
-    left: 60%;
-    width: 38%;
-    height: 93%;
-    overflow: hidden;
-    position: absolute;
 }
 
 .scroller {

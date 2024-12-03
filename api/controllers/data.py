@@ -75,7 +75,9 @@ def create(db: Session):
         last_name="smith",
         age=22,
         profile_picture="null",
-        user_type_id=2
+        user_type_id=2,
+        biography="We employ reliable, loving pet caregivers who can come to you, allowing us to provide your pet or pets with top-quality care in your own home. Whether you work long hours, are traveling out of town or simply want your pup(s) to have extra exercise even when you’re home – we have all the services to help out you and your pet(s). In addition, we offer occasional boarding services. To make a reservation, you can use our handy form, or reach out to us via call or text using the provided number above.",
+        contact_info="email@email.com, 012-345-6789"
     )
 
     try:

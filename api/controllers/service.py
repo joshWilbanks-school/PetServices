@@ -9,6 +9,7 @@ def create(db: Session, request: schema.ServiceCreate):
            
     new_item = model.Service(
             user_id=request.user_id,
+            price=request.price,
             service_type_id=request.service_type_id,
             animal_type_id=request.animal_type_id,
             time_measurement_id=request.time_measurement_id

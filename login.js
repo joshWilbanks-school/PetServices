@@ -225,19 +225,30 @@ async function login_db() {
     }
     
     cacheUser(user_in);
+
+    if(localStorage.getItem("profileShowing"))
+        showProfile();
     
     alert("Welcome, " + username + "!");
+    localStorage.removeItem("loginShowing");
     document.getElementById('auth-modal').style.display = 'none'; // Hide modal
     document.getElementById('navbar').style.display = 'block'; // Show navbar
+    document.getElementById('scroller-wrapper').style.display = '';
+    hideProfile();
+
     showSection('pet-type-section');
 }
 
 function logout_db(){
     
-    localStorage.removeItem("user");
-    sessionStorage.removeItem("user");
+    localStorage.clear();
+    sessionStorage.clear();
     document.getElementById('auth-modal').style.display = 'block'; // Hide modal
     document.getElementById('navbar').style.display = 'none'; // Show navbar
+    hideProfile();
+    document.getElementById('scroller-wrapper').style.display = 'none';
+
+    localStorage.setItem("loginShowing", "true");
 
     alert("You have logged out successfully.");
 }

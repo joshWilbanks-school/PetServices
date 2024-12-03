@@ -12,7 +12,9 @@ def create(db: Session, request: schema.UserCreate):
         last_name=request.last_name,
         age=request.age,
         profile_picture=request.profile_picture,
-        user_type_id=request.user_type_id
+        user_type_id=request.user_type_id,
+        biography=request.biography,
+        contact_info=request.contact_info
     )
 
     try:
