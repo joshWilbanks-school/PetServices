@@ -1,5 +1,4 @@
 let selectedPetType = '';
-const users = {}; // To store users' information
 
 // Function to select the pet type
 function selectPetType(type) {
@@ -320,22 +319,6 @@ function toggleNavbar() {
 
 }
 
-// Handle login
-function login() {
-    const username = document.getElementById('login-username').value;
-    const password = document.getElementById('login-password').value;
-
-    if (!users[username]) {
-        alert("Username not found. Please try again.");
-    } else if (users[username] === password) {
-        document.getElementById('auth-modal').style.display = 'none'; // Hide modal
-        document.getElementById('navbar').style.display = 'block'; // Show navbar
-        alert("Welcome, " + username + "!");
-    } else {
-        alert("Incorrect password. Please try again.");
-    }
-}
-
 // Function to reset and immediately show the first slide
 function resetCatWalkingSlideshow() {
     catWalkingSlideIndex = 1; // Set the index to the first slide
@@ -384,24 +367,6 @@ function showCatWalkingSlides(n) {
     }
 }
 
-// Handle signup
-function signup() {
-    const username = document.getElementById('signup-username').value;
-    const password = document.getElementById('signup-password').value;
-
-    if (username && password) {
-        if (users[username]) {
-            alert("Username already taken. Please choose a different username.");
-        } else {
-            users[username] = password; // Store username and password
-            alert("Account created successfully. Please log in.");
-            document.getElementById('signup-username').value = '';
-            document.getElementById('signup-password').value = '';
-        }
-    } else {
-        alert("Please fill out all fields.");
-    }
-}
 // Reset walking section when the user navigates to it
 function resetWalkingSection() {
     if (selectedPetType === "cat") {
@@ -716,96 +681,6 @@ function updateServiceDescriptions() {
     }
 }
 
-
-let reviews = []; // Store reviews globally
-
-function loadReviews() {
-    // Sample data for initial reviews
-    reviews = selectedPetType === 'dog' ? [
-        { name: 'Artemisia', rating: 5, review: 'Excellent service! My dog loved the grooming.', date: new Date('2024-01-15') },
-        { name: 'Balthazar', rating: 4, review: 'Great experience, would recommend!', date: new Date('2024-02-20') },
-        { name: 'Cressida', rating: 5, review: 'My dog came back looking fabulous!', date: new Date('2024-03-10') }
-    ] : [
-        { name: 'Dorian', rating: 5, review: 'The cat grooming service was superb!', date: new Date('2024-04-05') },
-        { name: 'Elysia', rating: 3, review: 'Decent service, but my cat was a bit anxious.', date: new Date('2024-05-12') },
-        { name: 'Thaddeus', rating: 4, review: 'Great care taken for my kitty, thank you!', date: new Date('2024-06-22') }
-    ];
-
-    applyFiltersAndSorting();
-}
-
-function displayReviews(filteredReviews) {
-    const reviewsList = document.getElementById('reviews-list');
-    reviewsList.innerHTML = ''; // Clear existing reviews
-
-    filteredReviews.forEach(review => {
-        const li = document.createElement('li');
-        li.innerHTML = `<strong>${review.name}</strong> <span class="star-rating">${'★'.repeat(review.rating)}</span>
-                        <span>(${review.date.toLocaleDateString()})</span><p>${review.review}</p>`;
-        reviewsList.appendChild(li);
-    });
-}
-
-function sortReviews() {
-    applyFiltersAndSorting(); // Reapply filters and sorting
-}
-
-function filterReviews() {
-    applyFiltersAndSorting(); // Reapply filters and sorting
-}
-
-function applyFiltersAndSorting() {
-    const sortOption = document.getElementById('sort-options').value;
-    const filterRating = document.getElementById('filter-rating').value;
-
-    // Filter reviews based on the selected rating
-    let filteredReviews = reviews.filter(review =>
-        filterRating === 'all' || review.rating === parseInt(filterRating)
-    );
-
-    // Sort filtered reviews
-    if (sortOption === 'rating') {
-        filteredReviews.sort((a, b) => b.rating - a.rating); // Sort by rating descending
-    } else if (sortOption === 'date') {
-        filteredReviews.sort((a, b) => b.date - a.date); // Sort by date descending
-    }
-
-    displayReviews(filteredReviews);
-}
-
-function addReview(event) {
-    event.preventDefault(); // Prevent form submission from refreshing the page
-    
-    const name = document.getElementById('review-name').value;
-    const rating = parseInt(document.getElementById('review-rating').value);
-    const message = document.getElementById('review-message').value;
-    const dateInput = document.getElementById('review-date').value;
-
-    if (name && rating && message && dateInput) {
-        // Convert date input to Date object
-        const date = new Date(dateInput);
-
-        // Create a new review object
-        const newReview = {
-            name: name,
-            rating: rating,
-            review: message,
-            date: date
-        };
-
-        // Add the new review to the global reviews array
-        reviews.push(newReview);
-
-        // Clear the form fields
-        document.getElementById('review-name').value = '';
-        document.getElementById('review-rating').value = '5';
-        document.getElementById('review-message').value = '';
-        document.getElementById('review-date').value = '';
-
-        // Reapply sorting and filtering to include the new review
-        applyFiltersAndSorting();
-    }
-}
 
 function showBookingForm() {
     // Hide all sections
