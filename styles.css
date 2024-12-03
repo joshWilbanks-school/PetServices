@@ -6,9 +6,12 @@ body {
     font-family: Arial, sans-serif;
 }
 
+<<<<<<< HEAD
+=======
 .center-wrapper {
     
 }
+>>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
 
 /* Slideshow container */
 .slideshow-container {
@@ -187,7 +190,11 @@ body {
     transition: width 0.3s ease;
 }
 
+<<<<<<< HEAD
+.sidebar a {
+=======
 .sidebar a, .sidebar button {
+>>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
     padding: 10px 15px;
     text-decoration: none;
     font-size: 18px;
@@ -199,9 +206,12 @@ body {
 .sidebar a:hover {
     background-color: #111;
 }
+<<<<<<< HEAD
+=======
 .sidebar img {
     cursor: pointer;
 }
+>>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
 
 .toggle-btn {
     position: absolute;
@@ -543,6 +553,8 @@ footer {
     border: 1px solid #ccc;
     background-color: #f4f4f4;
 }
+<<<<<<< HEAD
+=======
 
 .book-service-btn {
     background-color: #007BFF;
@@ -613,3 +625,4 @@ footer {
 .checkout-btn:hover {
     background-color: #218838;
 }
+>>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd

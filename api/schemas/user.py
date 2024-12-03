@@ -5,7 +5,10 @@ from schemas.user_type import UserType
 
 class UserBase(BaseModel):
     id: int
+<<<<<<< HEAD
+=======
     user_name: str
+>>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
     first_name: Optional[str]
     last_name: Optional[str]
     age: Optional[int]
