@@ -26,21 +26,6 @@
 
 </head>
 <body>
-    <div id="edit-profile" class="edit-profile">
-        <div id="profile-editor" class="profile-editor">
-            <h1 style="display: flex; flex-direction: row;">First Name: <textarea id="edit-first-name" class="text"></textarea></h1>
-            <h1 style="display: flex; flex-direction: row;">Last Name: <textarea id="edit-last-name" class="text"></textarea></h1>
-            <h1 style="display: flex; flex-direction: row;">User Name: <textarea id="edit-user-name" class="text"></textarea></h1>
-            <h1 style="display: flex; flex-direction: row;">Contact Info: <textarea id="edit-contact-info" class="text"></textarea></h1>
-            <h1 style="display: flex; flex-direction: row;">Biography: <textarea id="edit-bio" class="text"></textarea></h1>
-            
-            <div class="buttons-box" style="display: flex; flex-direction: row;">      
-                <button class="save-btn" onclick="saveEdit()">Save</button>
-                <button class="cancel-btn" onclick="toggleEditProfile()">Cancel</button>
-            </div>
-        </div>
-
-    </div>
 
     <!-- Sidebar -->
     <div id="sidebar" class="sidebar">
@@ -77,43 +62,45 @@
             </ul>
         </nav>
     </div>
+    <div id="scroller-wrapper" class="scroller-wrapper">
+        <div class="scroller" id="scroller">
+            
+
+        </div>
+    </div>
     <div id="main-content" class="main-content">
         <!-- Logout Button -->
 
         <div class="profile" id="profile" style="display: none;">
-            <div class="profile-left">
-                <div id="profile-basic-info" class="profile-basic-info">
-                    <div style="display: flex; flex-direction: row; width: 100%;">
-                        <img id="profile-pfp" class="profile-pfp" src="images/pfp.png"/>
-                        <div class="profile-user-info">
-                            <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                                <h1 id="profile-full-name" class="profile-full-name">Full Name</h1>
+            <div id="profile-50-split" class="profile-50-split">
+                <div class="profile-left">
+                    <div id="profile-basic-info" class="profile-basic-info">
+                        <div style="display: flex; flex-direction: row; width: 100%;">
+                            <img class="profile-pfp" src="images/pfp.png"/>
+                            <div class="profile-user-info">
+                                <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                                    <h1 class="profile-full-name">Full Name</h1>
+                                </div>
+                                <div style="display: flex; flex-direction: row;">
+                                    <h2 class="profile-user-name">@Username</h2>
+                                    <h2 class="profile-contact-info">email@email.com, 704-xxx-yyyy</h2>
+                                </div>
                             </div>
-                            <div style="display: flex; flex-direction: row;">
-                                <h2 id="profile-user-name" class="profile-user-name">@Username</h2>
-                                <h2 id="profile-contact-info" class="profile-contact-info">email@email.com, 704-xxx-yyyy</h2>
-                            </div>
+                            <h3 class="profile-edit-button">Edit</h3>
                         </div>
-                        <h3 id="profile-edit-button" class="profile-edit-button" onclick="toggleEditProfile()">Edit</h3>
+                        <div class="profile-bio">
+                            <h5 class="profile-bio-header">Biography</h5>
+                            Hello! I'm [Your Name], the [Your Job Title] here at [Company Name]. With [X] years in [Your Industry/Field], I specialize in [Your Key Skills/Expertise]. My role involves [Brief Description of Main Responsibilities], and I'm particularly proud of [One or Two Key Achievements]
+                        </div>
                     </div>
-                    <div id="profile-bio" class="profile-bio">
-                        <h5 class="profile-bio-header">Biography</h5>
-                        Hello! I'm [Your Name], the [Your Job Title] here at [Company Name]. With [X] years in [Your Industry/Field], I specialize in [Your Key Skills/Expertise]. My role involves [Brief Description of Main Responsibilities], and I'm particularly proud of [One or Two Key Achievements]
-                    </div>
-                </div>
-                <div class="profile-reviews-wrapper">
-                    <div class="profile-reviews-scroller" id="profile-reviews-scroller">
-                        
+                    <div class="profile-reviews-wrapper">
+                        <div class="profile-reviews-scroller" id="profile-reviews-scroller">
+                            
+                        </div>
                     </div>
                 </div>
             </div>
     
-        </div>
-        <div id="scroller-wrapper" class="scroller-wrapper" style="display: none;">
-            <div class="scroller" id="scroller">
-                
-    
-            </div>
         </div>
        
         
@@ -370,7 +357,6 @@
 =======
 >>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
 
-      
 
         <!-- Contact Section -->
         <div id="contact" class="content-section" style="display: none;">
@@ -483,7 +469,7 @@
                     <img class="pfp-img" src="images/pfp.png" />
                     <div>
                         <h2 id="service-full-name" style="margin: 0; margin-left: 20px;">Full Name</h2>
-                        <h4 id="service-user-name">@Username</h4>
+                        <h4 id="serice-user-name">@Username</h4>
                     </div>
                 </div>
                 <!-- Rating-->
@@ -502,14 +488,14 @@
                 <div style="display: flex; flex-direction: column; justify-content: space-evenly;">
                     <!-- Cats and Dogs-->
                     <div id="service-pet-listing" style="display: flex; flex-direction: row; align-items: center;">
-                        <h3 id="service-cats-bubble" style=" display: none;">Cats</h3>
-                        <h3 id="service-dogs-bubble" style="display: none;">Dogs</h3>
+                        <h3 id="service-cats-bubble" style="margin-left: 0;">Cats</h3>
+                        <h3 id="service-dogs-bubble">Dogs</h3>
                     </div>
                     <!-- Grooming, Walking, and Sitting-->
-                    <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-evenly;">
-                        <h3 id="service-grooming-bubble" style=" display: none;">Grooming</h3>
-                        <h3 id="service-walking-bubble" style="display: none;">Walking</h3>
-                        <h3 id="service-sitting-bubble" style="display: none;">Sitting</h3>
+                    <div style="display: flex; flex-direction: row; align-items: center;">
+                        <h3 id="service-grooming-bubble" style="margin-left: 0;">Grooming</h3>
+                        <h3 id="service-walking-bubble">Walking</h3>
+                        <h3 id="service-sitting-bubble">Sitting</h3>
                     </div>
                 </div>
                 
@@ -517,7 +503,7 @@
         </div>
     </template>
     <template id="review-template">
-        <div id="review" class="review">
+        <div class="review">
             <!-- Review -->
             <div style="display: flex; flex-direction: row; justify-content: space-between;">
                 <!-- PFP, name, and username-->
