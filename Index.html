@@ -5,18 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Services Homepage</title>
     <link rel="stylesheet" href="styles.css"> <!-- Linking the external CSS file -->
-<<<<<<< HEAD
-    <link rel="stylesheet" href="styles2.css"> <!-- New dog grooming stylesheet -->
-
-</head>
-<body>
-    <!-- Sidebar -->
-    <div id="sidebar" class="sidebar">
-       
-        <button class="toggle-btn" onclick="toggleNavbar()">☰</button>
-        <nav id="navbar" class="navbar">
-            <ul>
-=======
     <link rel="stylesheet" href="service.css">
     <link rel="stylesheet" href="scroller.css">
     <link rel="stylesheet" href="profile.css">
@@ -26,6 +14,21 @@
 
 </head>
 <body>
+    <div id="edit-profile" class="edit-profile">
+        <div id="profile-editor" class="profile-editor">
+            <h1 style="display: flex; flex-direction: row;">First Name: <textarea id="edit-first-name" class="text"></textarea></h1>
+            <h1 style="display: flex; flex-direction: row;">Last Name: <textarea id="edit-last-name" class="text"></textarea></h1>
+            <h1 style="display: flex; flex-direction: row;">User Name: <textarea id="edit-user-name" class="text"></textarea></h1>
+            <h1 style="display: flex; flex-direction: row;">Contact Info: <textarea id="edit-contact-info" class="text"></textarea></h1>
+            <h1 style="display: flex; flex-direction: row;">Biography: <textarea id="edit-bio" class="text"></textarea></h1>
+            
+            <div class="buttons-box" style="display: flex; flex-direction: row;">      
+                <button class="save-btn" onclick="saveEdit()">Save</button>
+                <button class="cancel-btn" onclick="toggleEditProfile()">Cancel</button>
+            </div>
+        </div>
+
+    </div>
 
     <!-- Sidebar -->
     <div id="sidebar" class="sidebar">
@@ -33,78 +36,56 @@
         <nav id="navbar" class="navbar">
             <img id="pfp" src="images/pfp.png" class="pfp-img" style="margin-left: 40%; margin-top: 5%;" onclick="toggleProfile()"/>
             <ul style="margin-top: 2%;">
->>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
                 <li><a href="#" onclick="showSection('pet-type-section')">Select Pet Type</a></li>
                 <li><a href="#" onclick="showSection('grooming')">Grooming</a></li>
                 <li><a href="#" onclick="showSection('walking')">Walking</a></li>
                 <li><a href="#" onclick="showSection('sitting')">Sitting</a></li>
                 <li><a href="#" onclick="showSection('contact')">Contact</a></li>
                 <li><a href="#" onclick="showSection('reviews')">Reviews</a></li>
-<<<<<<< HEAD
-            </ul>
-        </nav>
-    </div>
-
-   
-    <div id="main-content" class="main-content">
-        <!-- Logout Button -->
-        <button id="logout-btn" style="display: none;" onclick="logout()">Logout</button>
-
-        <!-- Welcome Message -->
-        <section id="welcome-section" class="content-section">
-            <h2>Welcome to the Homepage</h2>
-             <img src="images/homepagepic.jpg" alt="Welcome to Pet Services" class="homepage-image">
-            <p>Let's get started!</p>
-        </section>
-
-=======
                 <li><button id="logout-btn" onclick="logout_db()" style="font-size: 18px; margin: 0;">Logout</button></li>
             </ul>
         </nav>
-    </div>
-    <div id="scroller-wrapper" class="scroller-wrapper">
-        <div class="scroller" id="scroller">
-            
-
-        </div>
     </div>
     <div id="main-content" class="main-content">
         <!-- Logout Button -->
 
         <div class="profile" id="profile" style="display: none;">
-            <div id="profile-50-split" class="profile-50-split">
-                <div class="profile-left">
-                    <div id="profile-basic-info" class="profile-basic-info">
-                        <div style="display: flex; flex-direction: row; width: 100%;">
-                            <img class="profile-pfp" src="images/pfp.png"/>
-                            <div class="profile-user-info">
-                                <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                                    <h1 class="profile-full-name">Full Name</h1>
-                                </div>
-                                <div style="display: flex; flex-direction: row;">
-                                    <h2 class="profile-user-name">@Username</h2>
-                                    <h2 class="profile-contact-info">email@email.com, 704-xxx-yyyy</h2>
-                                </div>
+            <div class="profile-left">
+                <div id="profile-basic-info" class="profile-basic-info">
+                    <div style="display: flex; flex-direction: row; width: 100%;">
+                        <img id="profile-pfp" class="profile-pfp" src="images/pfp.png"/>
+                        <div class="profile-user-info">
+                            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                                <h1 id="profile-full-name" class="profile-full-name">Full Name</h1>
                             </div>
-                            <h3 class="profile-edit-button">Edit</h3>
+                            <div style="display: flex; flex-direction: row;">
+                                <h2 id="profile-user-name" class="profile-user-name">@Username</h2>
+                                <h2 id="profile-contact-info" class="profile-contact-info">email@email.com, 704-xxx-yyyy</h2>
+                            </div>
                         </div>
-                        <div class="profile-bio">
-                            <h5 class="profile-bio-header">Biography</h5>
-                            Hello! I'm [Your Name], the [Your Job Title] here at [Company Name]. With [X] years in [Your Industry/Field], I specialize in [Your Key Skills/Expertise]. My role involves [Brief Description of Main Responsibilities], and I'm particularly proud of [One or Two Key Achievements]
-                        </div>
+                        <h3 id="profile-edit-button" class="profile-edit-button" onclick="toggleEditProfile()">Edit</h3>
                     </div>
-                    <div class="profile-reviews-wrapper">
-                        <div class="profile-reviews-scroller" id="profile-reviews-scroller">
-                            
-                        </div>
+                    <div id="profile-bio" class="profile-bio">
+                        <h5 class="profile-bio-header">Biography</h5>
+                        Hello! I'm [Your Name], the [Your Job Title] here at [Company Name]. With [X] years in [Your Industry/Field], I specialize in [Your Key Skills/Expertise]. My role involves [Brief Description of Main Responsibilities], and I'm particularly proud of [One or Two Key Achievements]
+                    </div>
+                </div>
+                <div class="profile-reviews-wrapper">
+                    <div class="profile-reviews-scroller" id="profile-reviews-scroller">
+                        
                     </div>
                 </div>
             </div>
     
         </div>
+        <div id="scroller-wrapper" class="scroller-wrapper" style="display: none;">
+            <div class="scroller" id="scroller">
+                
+    
+            </div>
+        </div>
        
         
->>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
         <!-- Login/Signup Modal -->
         <div id="auth-modal" class="modal">
             <div class="modal-content">
@@ -116,27 +97,19 @@
                         <h3>Login</h3>
                         <input type="text" id="login-username" placeholder="Username" required>
                         <input type="password" id="login-password" placeholder="Password" required>
-<<<<<<< HEAD
-                        <button onclick="login()">Login</button>
-=======
                         <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
                             <input type="checkbox"  id="login-cache" value="Stay signed in?" style="padding: 0; width: 25%; margin: 0;">
                             <label for="login-cache" style="font-size: small; padding: 0; color: rgb(51, 51, 51);">Stay signed in?</label>
                         </div>
                         <button onclick="login_db()">Login</button>
->>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
                     </div>
                     
                     <div class="signup-section">
                         <h3>Sign Up</h3>
                         <input type="text" id="signup-username" placeholder="Username" required>
                         <input type="password" id="signup-password" placeholder="Password" required>
-<<<<<<< HEAD
-                        <button onclick="signup()">Sign Up</button>
-=======
                         <br />
                         <button onclick="createUser()">Sign Up</button>
->>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
                     </div>
                 </div>
             </div>
@@ -155,208 +128,6 @@
             </div>
         </section>
 
-<<<<<<< HEAD
-        <section id="cat-grooming-section" class="content-section" style="display: none;">
-            <h2>Cat Grooming Services</h2>
-            <p>We offer specialized grooming services for cats including bathing, nail trimming, and fur brushing. Our experienced team ensures your cat looks and feels their best!</p>
-        
-            <!-- Slideshow for Cat Grooming with Arrow Container -->
-            <div class="slideshow-container cat-slideshow">
-                <div class="slide fade cat-slide">
-                    <img src="images/cat-grooming1.png" alt="Cat Grooming 1" class="slide-image">
-                </div>
-                <div class="slide fade cat-slide">
-                    <img src="images/cat-grooming2.png" alt="Cat Grooming 2" class="slide-image">
-                </div>
-                <div class="slide fade cat-slide">
-                    <img src="images/cat-grooming3.png" alt="Cat Grooming 3" class="slide-image">
-                </div>
-        
-                <!-- Arrow container with controls -->
-                <div class="arrow-container">
-                    <a class="prev" onclick="changeCatSlide(-1)">&#10094;</a>
-                    <a class="next" onclick="changeCatSlide(1)">&#10095;</a>
-                </div>
-            </div>
-        
-            <!-- Dots to indicate slide -->
-            <div class="dots-container" style="text-align:center">
-                <span class="dot cat-dot" onclick="currentCatSlide(1)"></span> 
-                <span class="dot cat-dot" onclick="currentCatSlide(2)"></span> 
-                <span class="dot cat-dot" onclick="currentCatSlide(3)"></span> 
-            </div>
-        </section>
-        
-                        <!-- Dog Grooming Section -->
-        <section id="dog-grooming-section" class="content-section" style="display: none;">
-            <h2>Dog Grooming Services</h2>
-            <p>We offer dog grooming services including bathing, fur trimming, and nail clipping. Our professional groomers provide a relaxing experience for your dog, ensuring their coat is healthy and shiny.</p>
-        
-            <!-- Slideshow for Dog Grooming with Arrow Container -->
-            <div class="slideshow-container dog-slideshow">
-                <div class="slide fade dog-slide">
-                    <img src="images/dog-grooming1.png" alt="Dog Grooming 1" class="slide-image">
-                </div>
-                <div class="slide fade dog-slide">
-                    <img src="images/dog-grooming2.png" alt="Dog Grooming 2" class="slide-image">
-                </div>
-                <div class="slide fade dog-slide">
-                    <img src="images/dog-grooming3.png" alt="Dog Grooming 3" class="slide-image">
-                </div>
-        
-                <!-- Arrow container with controls -->
-                <div class="arrow-container">
-                    <a class="prev" onclick="changeDogSlide(-1)">&#10094;</a>
-                    <a class="next" onclick="changeDogSlide(1)">&#10095;</a>
-                </div>
-            </div>
-        
-            <!-- Dots to indicate slide -->
-            <div class="dots-container" style="text-align:center">
-                <span class="dot dog-dot" onclick="currentDogSlide(1)"></span> 
-                <span class="dot dog-dot" onclick="currentDogSlide(2)"></span> 
-                <span class="dot dog-dot" onclick="currentDogSlide(3)"></span> 
-            </div>
-        </section>
-        <section id="cat-walking-section" class="content-section" style="display: none;">
-            <h2>Cat Walking Services</h2>
-            <p>Our cat walking services ensure your feline friend gets the exercise and stimulation they need while staying safe and happy. We offer specialized routes designed for cats to explore safely!</p>
-        
-            <!-- Slideshow Gallery -->
-            <div class="slideshow-container">
-                <!-- Slide 1 -->
-                <div class="slide cat-walking-slide">
-                    <img src="images/cat-walking1.png" alt="Cat Walking 1" class="slide-image">
-                </div>
-                <!-- Slide 2 -->
-                <div class="slide cat-walking-slide">
-                    <img src="images/cat-walking2.png" alt="Cat Walking 2" class="slide-image">
-                </div>
-                <!-- Slide 3 -->
-                <div class="slide cat-walking-slide">
-                    <img src="images/cat-walking3.png" alt="Cat Walking 3" class="slide-image">
-                </div>
-        
-                <!-- Arrow Container -->
-                <div class="arrow-container">
-                    <a class="prev" onclick="changeCatWalkingSlide(-1)">&#10094;</a>
-                    <a class="next" onclick="changeCatWalkingSlide(1)">&#10095;</a>
-                </div>
-            </div>
-        
-            <!-- Dots Navigation -->
-            <div class="dots-container" style="text-align: center;">
-                <span class="dot cat-walking-dot" onclick="currentCatWalkingSlide(1)"></span>
-                <span class="dot cat-walking-dot" onclick="currentCatWalkingSlide(2)"></span>
-                <span class="dot cat-walking-dot" onclick="currentCatWalkingSlide(3)"></span>
-            </div>
-        </section>
-        
-
-        
-       
-
-        <section id="dog-walking-section" class="content-section" style="display: none;">
-            <h2>Dog Walking Services</h2>
-            <p>Our dog walking services provide exercise, companionship, and fun for your canine friend. Each walk is tailored to suit your dog's energy level and needs!</p>   
-       <div class="slideshow-container">
-        <!-- Slide 1 -->
-        <div class="slide dog-walking-slide">
-            <img src="images/dog-walking1.png" alt="Dog Walking 1" class="slide-image">
-        </div>
-        <!-- Slide 2 -->
-        <div class="slide dog-walking-slide">
-            <img src="images/dog-walking2.png" alt="Dog Walking 2" class="slide-image">
-        </div>
-        <!-- Slide 3 -->
-        <div class="slide dog-walking-slide">
-            <img src="images/dog-walking3.png" alt="Dog Walking 3" class="slide-image">
-        </div>
-
-        <!-- Arrow Container -->
-        <div class="arrow-container">
-            <a class="prev" onclick="changeDogWalkingSlide(-1)">&#10094;</a>
-            <a class="next" onclick="changeDogWalkingSlide(1)">&#10095;</a>
-        </div>
-    </div>
-
-    <!-- Dots Navigation -->
-    <div class="dots-container" style="text-align: center;">
-        <span class="dot dog-walking-dot" onclick="currentDogWalkingSlide(1)"></span>
-        <span class="dot dog-walking-dot" onclick="currentDogWalkingSlide(2)"></span>
-        <span class="dot dog-walking-dot" onclick="currentDogWalkingSlide(3)"></span>
-    </div>
-
-        </section>
-        <section id="cat-sitting-section" class="content-section" style="display: none;">
-            <h2>Cat Sitting Services</h2>
-            <p>Our cat sitting services provide your feline friend with care and companionship while you're away. We ensure they receive feeding, playtime, and the attention they deserve!</p>
-        
-            <!-- Slideshow for Cat Sitting with Arrow Container -->
-            <div class="slideshow-container cat-sitting-slideshow">
-                <div class="slide fade cat-sitting-slide">
-                    <img src="images/cat-sitting1.png" alt="Cat Sitting 1" class="slide-image">
-                </div>
-                <div class="slide fade cat-sitting-slide">
-                    <img src="images/cat-sitting2.png" alt="Cat Sitting 2" class="slide-image">
-                </div>
-                <div class="slide fade cat-sitting-slide">
-                    <img src="images/cat-sitting3.png" alt="Cat Sitting 3" class="slide-image">
-                </div>
-        
-                <!-- Arrow container with controls -->
-                <div class="arrow-container">
-                    <a class="prev" onclick="changeCatSittingSlide(-1)">&#10094;</a>
-                    <a class="next" onclick="changeCatSittingSlide(1)">&#10095;</a>
-                </div>
-            </div>
-        
-            <!-- Dots to indicate slide -->
-            <div class="dots-container" style="text-align: center;">
-                <span class="dot cat-sitting-dot" onclick="currentCatSittingSlide(1)"></span>
-                <span class="dot cat-sitting-dot" onclick="currentCatSittingSlide(2)"></span>
-                <span class="dot cat-sitting-dot" onclick="currentCatSittingSlide(3)"></span>
-            </div>
-        </section>
-        <section id="dog-sitting-section" class="content-section" style="display: none;">
-            <h2>Dog Sitting Services</h2>
-            <p>Our dog sitting services ensure your canine companion feels loved and cared for while you're away. From feeding to playtime, we provide everything your dog needs!</p>
-        
-            <!-- Slideshow for Dog Sitting with Arrow Container -->
-            <div class="slideshow-container dog-sitting-slideshow">
-                <div class="slide fade dog-sitting-slide">
-                    <img src="images/dog-sitting1.png" alt="Dog Sitting 1" class="slide-image">
-                </div>
-                <div class="slide fade dog-sitting-slide">
-                    <img src="images/dog-sitting2.png" alt="Dog Sitting 2" class="slide-image">
-                </div>
-                <div class="slide fade dog-sitting-slide">
-                    <img src="images/dog-sitting3.png" alt="Dog Sitting 3" class="slide-image">
-                </div>
-        
-                <!-- Arrow container with controls -->
-                <div class="arrow-container">
-                    <a class="prev" onclick="changeDogSittingSlide(-1)">&#10094;</a>
-                    <a class="next" onclick="changeDogSittingSlide(1)">&#10095;</a>
-                </div>
-            </div>
-        
-            <!-- Dots to indicate slide -->
-            <div class="dots-container" style="text-align: center;">
-                <span class="dot dog-sitting-dot" onclick="currentDogSittingSlide(1)"></span>
-                <span class="dot dog-sitting-dot" onclick="currentDogSittingSlide(2)"></span>
-                <span class="dot dog-sitting-dot" onclick="currentDogSittingSlide(3)"></span>
-            </div>
-        </section>
-        
-        
-        
-        
-        
-
-=======
->>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
-
 
         <!-- Contact Section -->
         <div id="contact" class="content-section" style="display: none;">
@@ -366,23 +137,20 @@
             <p>Phone: (123) 456-7890</p>
             <a href="mailto:contact@petservices.com" class="write-button">Write Us</a>
             <div class="social-media">
-<<<<<<< HEAD
                  <div class="faq-section">
-        <h3>Frequently Asked Questions (FAQ)</h3>
-        <ul>
-            <li>
-                <h4>How do I leave a review?</h4>
-                <p>To leave a review, visit our homepage and click on the "Reviews" tab. From there, you can rate our services and write a short message about your experience.</p>
-            </li>
-            <li>
-                <h4>How do I select which pet I need services for?</h4>
-                <p>When you log in, you'll be prompted to select your pet's profile. If you haven’t created a profile for your pet.</p>
-            </li>
-        </ul>
-    </div>
-</div>
-=======
->>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
+                    <h3>Frequently Asked Questions (FAQ)</h3>
+                    <ul>
+                        <li>
+                            <h4>How do I leave a review?</h4>
+                            <p>To leave a review, visit our homepage and click on the "Reviews" tab. From there, you can rate our services and write a short message about your experience.</p>
+                        </li>
+                        <li>
+                            <h4>How do I select which pet I need services for?</h4>
+                            <p>When you log in, you'll be prompted to select your pet's profile. If you haven’t created a profile for your pet.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
                 <h3>Find us elsewhere</h3>
                 <ul>
                     <li><a href="#">Facebook</a></li>
@@ -449,18 +217,10 @@
             </ul>
         </div>
 
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
         <footer>
             <p>&copy; 2024 Pet Services</p>
         </footer>
     </div>
-<<<<<<< HEAD
-
-=======
     <template id="serviceTemplate">
         <div id="service id" class="service">
             <div style="display: flex; flex-direction: row; justify-content: space-between;">
@@ -469,7 +229,7 @@
                     <img class="pfp-img" src="images/pfp.png" />
                     <div>
                         <h2 id="service-full-name" style="margin: 0; margin-left: 20px;">Full Name</h2>
-                        <h4 id="serice-user-name">@Username</h4>
+                        <h4 id="service-user-name">@Username</h4>
                     </div>
                 </div>
                 <!-- Rating-->
@@ -488,14 +248,14 @@
                 <div style="display: flex; flex-direction: column; justify-content: space-evenly;">
                     <!-- Cats and Dogs-->
                     <div id="service-pet-listing" style="display: flex; flex-direction: row; align-items: center;">
-                        <h3 id="service-cats-bubble" style="margin-left: 0;">Cats</h3>
-                        <h3 id="service-dogs-bubble">Dogs</h3>
+                        <h3 id="service-cats-bubble" style=" display: none;">Cats</h3>
+                        <h3 id="service-dogs-bubble" style="display: none;">Dogs</h3>
                     </div>
                     <!-- Grooming, Walking, and Sitting-->
-                    <div style="display: flex; flex-direction: row; align-items: center;">
-                        <h3 id="service-grooming-bubble" style="margin-left: 0;">Grooming</h3>
-                        <h3 id="service-walking-bubble">Walking</h3>
-                        <h3 id="service-sitting-bubble">Sitting</h3>
+                    <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-evenly;">
+                        <h3 id="service-grooming-bubble" style=" display: none;">Grooming</h3>
+                        <h3 id="service-walking-bubble" style="display: none;">Walking</h3>
+                        <h3 id="service-sitting-bubble" style="display: none;">Sitting</h3>
                     </div>
                 </div>
                 
@@ -503,7 +263,7 @@
         </div>
     </template>
     <template id="review-template">
-        <div class="review">
+        <div id="review" class="review">
             <!-- Review -->
             <div style="display: flex; flex-direction: row; justify-content: space-between;">
                 <!-- PFP, name, and username-->
@@ -531,7 +291,6 @@
             </div>
         </div>
     </template>
->>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
     
     <script src="script.js"></script>
 </body>

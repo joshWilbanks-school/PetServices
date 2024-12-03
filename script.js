@@ -1,12 +1,6 @@
 let selectedPetType = '';
+const users = {}; // To store users' information
 
-<<<<<<< HEAD
-// Show the login/signup modal on page load
-window.onload = function () {
-    document.getElementById('auth-modal').style.display = 'block';
-}
-=======
->>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
 // Function to select the pet type
 function selectPetType(type) {
     selectedPetType = type; // Save the selected pet type
@@ -59,6 +53,240 @@ function showSection(sectionId) {
     }
 }
 
+// Function to initialize the first slide for each section
+document.addEventListener("DOMContentLoaded", function () {
+    showCatSlides(catSlideIndex); // Cat Grooming
+    showDogSlides(dogSlideIndex, true); // Dog Grooming
+    showCatWalkingSlides(catWalkingSlideIndex); // Cat Walking
+    showDogWalkingSlides(dogWalkingSlideIndex); // Dog Walking
+    showCatSittingSlides(catSittingSlideIndex); // Cat Sitting
+    showDogSittingSlides(dogSittingSlideIndex); // Dog Sitting
+});
+
+let catSlideIndex = 1;
+showCatSlides(catSlideIndex);
+
+// Function to change slides using arrows
+function changeCatSlide(n) {
+    showCatSlides(catSlideIndex += n);
+}
+
+// Function to go to the specific slide
+function currentCatSlide(n) {
+    showCatSlides(catSlideIndex = n);
+}
+let catWalkingSlideIndex = 1; // Initialize the slide index
+
+// Function to reset and show the first slide when entering the cat-walking-section
+function resetCatWalkingSlideshow() {
+    catWalkingSlideIndex = 1; // Reset the index to the first slide
+    showCatWalkingSlides(catWalkingSlideIndex); // Display the first slide
+}
+
+// Function to navigate slides using the arrows
+function changeCatWalkingSlide(n) {
+    showCatWalkingSlides(catWalkingSlideIndex += n); // Increment or decrement the slide index
+}
+
+// Function to navigate to a specific slide using dots
+function currentCatWalkingSlide(n) {
+    showCatWalkingSlides(catWalkingSlideIndex = n); // Set the slide index to the selected slide
+}
+
+// Function to display the current slide
+function showCatWalkingSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("cat-walking-slide"); // Get all slides
+    let dots = document.getElementsByClassName("cat-walking-dot"); // Get all dots
+
+    // Loop the slideshow: if n > total slides, reset to the first slide
+    if (n > slides.length) {
+        catWalkingSlideIndex = 1;
+    }
+    // Loop the slideshow: if n < 1, reset to the last slide
+    if (n < 1) {
+        catWalkingSlideIndex = slides.length;
+    }
+
+    // Hide all slides
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    // Remove the "active" class from all dots
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    // Show the first slide immediately and set the active dot
+    slides[catWalkingSlideIndex - 1].style.display = "block";
+    if (dots.length > 0) {
+        dots[catWalkingSlideIndex - 1].className += " active";
+    }
+}
+
+
+// Function to display the current slide
+function showCatSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("cat-slide");
+    let dots = document.getElementsByClassName("cat-dot");
+    if (n > slides.length) {
+        catSlideIndex = 1; // Loop back to the first slide
+    }
+    if (n < 1) {
+        catSlideIndex = slides.length; // Loop back to the last slide
+    }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none"; // Hide all slides
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", ""); // Remove active class from dots
+    }
+    slides[catSlideIndex - 1].style.display = "block"; // Show the current slide
+    dots[catSlideIndex - 1].className += " active"; // Add active class to the current dot
+}
+let dogSlideIndex = 1;
+
+// Function to reset and display the first slide when entering the dog grooming section
+function resetDogSlides() {
+    dogSlideIndex = 1; // Reset to the first slide
+    showDogSlides(dogSlideIndex, true); // Display the first slide immediately
+}
+
+
+// Function to change slides using arrows
+function changeDogSlide(n) {
+    showDogSlides(dogSlideIndex += n, false);
+}
+
+// Function to go to a specific slide
+function currentDogSlide(n) {
+    showDogSlides(dogSlideIndex = n, false);
+}
+
+// Function to display the current slide
+function showDogSlides(n, isReset) {
+    let i;
+    let slides = document.getElementsByClassName("dog-slide");
+    let dots = document.getElementsByClassName("dog-dot");
+
+    // Ensure slide index loops properly
+    if (n > slides.length) {
+        dogSlideIndex = 1; // Loop back to the first slide
+    }
+    if (n < 1) {
+        dogSlideIndex = slides.length; // Loop back to the last slide
+    }
+
+    // Hide all slides
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    // Remove active class from all dots
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    // Show the first slide immediately if resetting
+    if (isReset) {
+        slides[0].style.display = "block";
+        dots[0].className += " active";
+    } else {
+        // Show the current slide and highlight the corresponding dot
+        slides[dogSlideIndex - 1].style.display = "block";
+        dots[dogSlideIndex - 1].className += " active";
+    }
+}
+
+let catSittingSlideIndex = 1; // Initialize the cat sitting slide index
+let dogSittingSlideIndex = 1; // Initialize the dog sitting slide index
+
+// Cat Sitting Functions
+function changeCatSittingSlide(n) {
+    showCatSittingSlides(catSittingSlideIndex += n);
+}
+
+function currentCatSittingSlide(n) {
+    showCatSittingSlides(catSittingSlideIndex = n);
+}
+// Ensure the first Cat Sitting slide appears immediately
+document.addEventListener("DOMContentLoaded", function () {
+    showCatSittingSlides(catSittingSlideIndex); // Display the first slide on page load
+});
+// Ensure the first Cat Grooming slide appears immediately
+document.addEventListener("DOMContentLoaded", function () {
+    showCatSlides(catSlideIndex); // Display the first slide on page load
+});
+// Ensure the first Dog Grooming slide appears immediately
+document.addEventListener("DOMContentLoaded", function () {
+    showDogSlides(dogSlideIndex, true); // Display the first slide on page load
+});
+// Ensure the first Cat Walking slide appears immediately
+document.addEventListener("DOMContentLoaded", function () {
+    showCatWalkingSlides(catWalkingSlideIndex); // Display the first slide on page load
+});
+
+// Ensure the first Dog Walking slide appears immediately
+document.addEventListener("DOMContentLoaded", function () {
+    showDogWalkingSlides(dogWalkingSlideIndex); // Display the first slide on page load
+});
+// Ensure the first Cat Sitting slide appears immediately
+document.addEventListener("DOMContentLoaded", function () {
+    showCatSittingSlides(catSittingSlideIndex); // Display the first slide on page load
+});
+// Ensure the first Dog Sitting slide appears immediately
+document.addEventListener("DOMContentLoaded", function () {
+    showDogSittingSlides(dogSittingSlideIndex); // Display the first slide on page load
+});
+
+
+function showCatSittingSlides(n) {
+    let slides = document.getElementsByClassName("cat-sitting-slide");
+    let dots = document.getElementsByClassName("cat-sitting-dot");
+
+    if (n > slides.length) catSittingSlideIndex = 1;
+    if (n < 1) catSittingSlideIndex = slides.length;
+
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    slides[catSittingSlideIndex - 1].style.display = "block";
+    dots[catSittingSlideIndex - 1].className += " active";
+}
+
+// Dog Sitting Functions
+function changeDogSittingSlide(n) {
+    showDogSittingSlides(dogSittingSlideIndex += n);
+}
+
+function currentDogSittingSlide(n) {
+    showDogSittingSlides(dogSittingSlideIndex = n);
+}
+
+function showDogSittingSlides(n) {
+    let slides = document.getElementsByClassName("dog-sitting-slide");
+    let dots = document.getElementsByClassName("dog-sitting-dot");
+
+    if (n > slides.length) dogSittingSlideIndex = 1;
+    if (n < 1) dogSittingSlideIndex = slides.length;
+
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    slides[dogSittingSlideIndex - 1].style.display = "block";
+    dots[dogSittingSlideIndex - 1].className += " active";
+}
+
 
 // Sidebar that collapses
 function toggleSidebar() {
@@ -92,8 +320,6 @@ function toggleNavbar() {
 
 }
 
-<<<<<<< HEAD
-=======
 // Handle login
 function login() {
     const username = document.getElementById('login-username').value;
@@ -104,10 +330,6 @@ function login() {
     } else if (users[username] === password) {
         document.getElementById('auth-modal').style.display = 'none'; // Hide modal
         document.getElementById('navbar').style.display = 'block'; // Show navbar
-<<<<<<< HEAD
-        document.getElementById('logout-btn').style.display = 'block'; // Show logout button
-=======
->>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
         alert("Welcome, " + username + "!");
     } else {
         alert("Incorrect password. Please try again.");
@@ -206,14 +428,9 @@ function showWalkingSection(type) {
         document.getElementById("dog-walking-section").style.display = "block";
     }
 }
->>>>>>> 66bd825a135da09417682bc6d8be6f7648161531
 // Logout function
 function logout() {
     document.getElementById('navbar').style.display = 'none'; // Hide navbar
-<<<<<<< HEAD
-    document.getElementById('logout-btn').style.display = 'none'; // Hide logout button
-=======
->>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
     document.getElementById('auth-modal').style.display = 'block'; // Show modal
 
     // Clear all input fields
@@ -232,7 +449,85 @@ function logout() {
 
     alert("You have logged out successfully.");
 }
+// Function to reset and show the first slide in Cat Walking section
+function resetCatWalkingSlideshow() {
+    catWalkingSlideIndex = 1; // Reset to the first slide
+    showCatWalkingSlides(catWalkingSlideIndex); // Display the first slide
+}
 
+// Function to navigate slides in Cat Walking section
+function changeCatWalkingSlide(n) {
+    showCatWalkingSlides(catWalkingSlideIndex += n);
+}
+
+// Function to navigate to a specific slide in Cat Walking section
+function currentCatWalkingSlide(n) {
+    showCatWalkingSlides(catWalkingSlideIndex = n);
+}
+
+// Function to display the current slide in Cat Walking section
+function showCatWalkingSlides(n) {
+    let slides = document.getElementsByClassName("cat-walking-slide");
+    let dots = document.getElementsByClassName("cat-walking-dot");
+
+    if (n > slides.length) {
+        catWalkingSlideIndex = 1; // Loop back to the first slide
+    }
+    if (n < 1) {
+        catWalkingSlideIndex = slides.length; // Loop back to the last slide
+    }
+
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none"; // Hide all slides
+    }
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", ""); // Remove active class from all dots
+    }
+
+    slides[catWalkingSlideIndex - 1].style.display = "block"; // Show the current slide
+    if (dots.length > 0) {
+        dots[catWalkingSlideIndex - 1].className += " active"; // Highlight the active dot
+    }
+}
+
+let slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function changeSlide(n) {
+    slideIndex += n;
+
+    // Loop back if going beyond available slides
+    if (slideIndex > 3) {
+        slideIndex = 1;
+    } else if (slideIndex < 1) {
+        slideIndex = 3;
+    }
+
+    showSlides(slideIndex);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("slide");
+    let dots = document.getElementsByClassName("dot");
+
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+}
 
 function showSection(sectionId) {
     // Hide all content sections first
@@ -277,14 +572,60 @@ function showSection(sectionId) {
 }
 
 
+// Show the selected section
+let dogWalkingSlideIndex = 1; // Initialize the slide index
+
+// Function to reset and show the first slide when entering the dog-walking-section
+function resetDogWalkingSlideshow() {
+    dogWalkingSlideIndex = 1; // Reset the index to the first slide
+    showDogWalkingSlides(dogWalkingSlideIndex); // Display the first slide
+}
+
+// Function to navigate slides using the arrows
+function changeDogWalkingSlide(n) {
+    showDogWalkingSlides(dogWalkingSlideIndex += n); // Increment or decrement the slide index
+}
+
+// Function to navigate to a specific slide using dots
+function currentDogWalkingSlide(n) {
+    showDogWalkingSlides(dogWalkingSlideIndex = n); // Set the slide index to the selected slide
+}
+
+// Function to display the current slide
+function showDogWalkingSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("dog-walking-slide"); // Get all slides
+    let dots = document.getElementsByClassName("dog-walking-dot"); // Get all dots
+
+    // Loop the slideshow: if n > total slides, reset to the first slide
+    if (n > slides.length) {
+        dogWalkingSlideIndex = 1;
+    }
+    // Loop the slideshow: if n < 1, reset to the last slide
+    if (n < 1) {
+        dogWalkingSlideIndex = slides.length;
+    }
+
+    // Hide all slides
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    // Remove the "active" class from all dots
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    // Show the current slide and set the corresponding dot as active
+    slides[dogWalkingSlideIndex - 1].style.display = "block";
+    dots[dogWalkingSlideIndex - 1].className += " active";
+}
+
 // Function to select the pet type
 function selectPetType(type) {
     selectedPetType = type; // Store the selected pet type
     alert(`You selected ${type === "cat" ? "Cat Services" : "Dog Services"}.`);
 }
-
-sectionId = ""
-bookingSection = ""
 if (sectionId === "walking") {
     if (selectedPetType === "dog") {
         resetDogWalkingSlideshow(); // Reset the slideshow to show the first slide
@@ -376,8 +717,6 @@ function updateServiceDescriptions() {
 }
 
 
-<<<<<<< HEAD
-=======
 let reviews = []; // Store reviews globally
 
 function loadReviews() {
@@ -467,9 +806,6 @@ function addReview(event) {
         applyFiltersAndSorting();
     }
 }
-<<<<<<< HEAD
-=======
->>>>>>> 66bd825a135da09417682bc6d8be6f7648161531
 
 function showBookingForm() {
     // Hide all sections
@@ -580,4 +916,3 @@ function checkout() {
     cart = []; // Clear cart
     updateCartUI(); // Refresh cart UI
 }
->>>>>>> cab7b64b92abd1d4157972e429912e9b7a2a35dd
