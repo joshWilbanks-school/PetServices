@@ -252,3 +252,8 @@ function logout_db(){
 
     alert("You have logged out successfully.");
 }
+
+function contact() {
+    showSection('contact');
+    document.getElementById("scroller-wrapper").style.display = 'none';
+}

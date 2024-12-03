@@ -15,6 +15,8 @@ function showSection(sectionId) {
         sections[i].style.display = "none";
     }
 
+    
+
     // Check if a pet type is required for the section
     if (['grooming', 'walking', 'sitting'].includes(sectionId)) {
         if (!selectedPetType) {
@@ -688,6 +690,8 @@ function showBookingForm() {
     for (let i = 0; i < sections.length; i++) {
         sections[i].style.display = "none";
     }
+
+    document.getElementById("scroller-wrapper").style.display = "none";
 
     // Show a booking form or section
     const bookingSection = document.createElement("div");
