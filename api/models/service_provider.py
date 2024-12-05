@@ -11,7 +11,6 @@ class ServiceProvider(Base):
     user_id = Column(Integer, ForeignKey("user.id"))
     rating = Column(DECIMAL(5,2), nullable=True)
     title = Column(String(25), nullable=True)
-    biography = Column(String(300), nullable=True)
 
     user = relationship("User")
 

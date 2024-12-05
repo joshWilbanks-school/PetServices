@@ -32,7 +32,7 @@ class UserUpdate(BaseModel):
     last_name: Optional[str] = None
     age: Optional[int] = None
     profile_picture: Optional[str] = None
-    user_type_id: Optional[str] = None
+    user_type_id: Optional[int] = None
     biography: Optional[str] = None
     contact_info: Optional[str] = None
 

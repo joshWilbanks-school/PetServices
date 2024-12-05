@@ -9,25 +9,21 @@ class ServiceProviderBase(BaseModel):
     id: int
     user_id: int
     rating: float
-    title: str
-    biography: str
+    title: Optional[str]
 
 class ServiceProviderCreate(BaseModel):
     user_id: int
     title: str
-    biography: str
 
 
 class ServiceProviderUpdate(BaseModel):
     user_id: Optional[int] = None
     rating: Optional[float] = None
     title: Optional[str] = None
-    biography: Optional[str] = None
 
 class ServiceProviderCreateWithUser(user.UserCreate):
     user_id: int
     title: str
-    biography: str
 
 
 class ServiceProvider(ServiceProviderBase):
