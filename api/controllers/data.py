@@ -205,7 +205,7 @@ def addRandomReviews(db: Session, customer: m_customer.Customer, max_service_pro
         rnd_rating = random.randint(1, 5)
         #create a review
         review: m_review.Review = m_review.Review(
-            customer_id=customer.id,
+            user_id=customer.user_id,
             service_provider_id=id,
             review=reviews[5 - rnd_rating],
             rating=rnd_rating

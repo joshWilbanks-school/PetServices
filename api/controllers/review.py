@@ -16,7 +16,7 @@ from sqlalchemy.exc import SQLAlchemyError
 def create(db: Session, request: schema.ReviewCreate):
            
     new_item: model.Review = model.Review(
-            customer_id=request.customer_id,
+            user_id=request.user_id,
             service_provider_id=request.service_provider_id,
             review=request.review,
             rating=request.rating

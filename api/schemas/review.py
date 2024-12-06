@@ -1,26 +1,26 @@
 import datetime
 from typing import Optional
-from schemas.customer import Customer
+from schemas.user import User
 from schemas.service_provider import ServiceProvider
 from pydantic import BaseModel
 
 
 class ReviewBase(BaseModel):
     id: int
-    customer_id: int
+    user_id: int
     service_provider_id: int
     review: str
     rating: float
 
 class ReviewCreate(BaseModel):
-    customer_id: int
+    user_id: int
     service_provider_id: int
     review: Optional[str] = None
     rating: Optional[float] = None
 
 
 class ReviewUpdate(BaseModel):
-    customer_id: Optional[int] = None
+    user_id: Optional[int] = None
     service_provider_id: Optional[int] = None
     review: Optional[str] = None
     rating: Optional[float] = None
@@ -28,7 +28,7 @@ class ReviewUpdate(BaseModel):
 
 
 class Review(ReviewBase):
-    customer: Customer = None
+    user: User = None
     service_provider: ServiceProvider = None
 
     class ConfigDict:
