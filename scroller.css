@@ -1,14 +1,32 @@
-
-.scroller-wrapper {
-    left: 35%;
-    width: 50%;
-    top: 0%;
-    height: 93%;
-    overflow: hidden;
-    position: absolute;
-    min-width: 540px;
+@media (min-width: 1100px)
+{
+    .scroller-wrapper {
+        left: 50%;
+        width: 50%;
+        top: 0%;
+        height: 93%;
+        overflow: hidden;
+        position: absolute;
+        min-width: 540px;
+        transform:translateX(-50%);
+    }
 }
-
+@media (max-width: 1099px)
+{
+    .scroller-wrapper {
+        left: 275px;
+        width: 50%;
+        top: 0%;
+        height: 93%;
+        overflow: hidden;
+        position: absolute;
+        min-width: 540px;
+    }
+}
+.scroller-wrapper-profile {
+    display: none;
+}
+/* 
 @media (min-width: 1475px)
 {
     .scroller-wrapper-profile {
@@ -33,7 +51,7 @@
         position: sticky;
     }
     
-}
+} */
 
 .scroller {
     

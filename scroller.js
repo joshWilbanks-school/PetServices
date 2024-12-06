@@ -129,9 +129,9 @@ function createDic(_callback)
 
 }
 
-function setPrice(node, service)
+function setPrice(node, service, name)
 {
-    let text = node.innerText + '<p style=\"font-size: small; font-weight: 400; margin: 0;\">' + " $" + service.price + " / " + service.time_measurement.type + "</p>";
+    let text = capitalize(name) + '<p style=\"font-size: small; font-weight: 400; margin: 0;\">' + " $" + service.price + " / " + service.time_measurement.type + "</p>";
     node.innerHTML = text;
 }
 
@@ -139,19 +139,25 @@ function setStars(rating, stars)
 {
             
     let rating_floor = Math.floor(rating);
-    for(i = 0; i < rating_floor; i++)
+    for(j = 0; j < rating_floor; j++)
     {
-        stars[i].setAttribute("src", "images/star.png");
+        stars[j].setAttribute("src", "images/star.png");
     }
 
+    if(rating == 5)
+        return;
+    
     if((rating - rating_floor) >= .5)
         stars[rating_floor].setAttribute("src", "images/star-half.png");
     else
+    {
         stars[rating_floor].setAttribute("src", "images/star-empty.png");
 
-    for(i = rating_floor + 1; i < 5; i++)
+    }
+
+    for(j = rating_floor + 1; j < 5; j++)
     {
-        stars[i].setAttribute("src", "images/star-empty.png");
+        stars[j].setAttribute("src", "images/star-empty.png");
     }
 }
 
@@ -163,17 +169,34 @@ function updateServices(_callback)
     let content = template.content;
     let review_content = review_template.content;
 
-    for(i = 0; i < Object.keys(serviceUserDic).length; i++)
+    length = Object.keys(serviceUserDic).length;
+    //sort by highest reviews first
+    
+    let sorted_users = Object.values(serviceProviderDic);
+    sorted_users = sorted_users.sort((a, b) => {
+        return a.rating > b.rating ? -1 : 1;
+    })
+
+
+    for(i = 0; i < length; i++)
     {
-        let user_services = Object.values(serviceUserDic)[i];
+        let user_services = Object.values(serviceUserDic)[sorted_users[i].user_id - 1];
+
+
         let clone = content.cloneNode(true);
         let r_clone = review_content.cloneNode(true);
-
+        
+        let service = user_services[0];
+        let service_provider = serviceProviderDic[service.user_id];
+        
+        r = getBestReview(service_provider);
         clone.getElementById("service id").setAttribute("id", "service " + i);
 
         document.getElementById("scroller").appendChild(clone);
         clone = document.getElementById("service " + i);
-        clone.querySelector("#"+"cat-dog-review-section").appendChild(r_clone);
+        if(r)
+            clone.querySelector("#"+"cat-dog-review-section").appendChild(r_clone);
+
         r_clone = clone.querySelector("#"+"review");
 
         let s_name = clone.querySelector("#" + "service-full-name");
@@ -191,8 +214,6 @@ function updateServices(_callback)
         let s_walking = clone.querySelector("#" + "service-walking-bubble");
         let s_sitting = clone.querySelector("#" + "service-sitting-bubble");
         
-        let service = user_services[0];
-        let service_provider = serviceProviderDic[service.user_id];
         
         clone.setAttribute("onClick", "showServiceProfile(" + service.user_id + ")")
 
@@ -202,13 +223,27 @@ function updateServices(_callback)
 
         s_u_name.innerText = "@" + service.user.user_name.toLowerCase();
 
-        s_rating.innerText = service_provider.rating;
 
-        let stars = [s_star1, s_star2, s_star3, s_star4, s_star5];
+        if(r)
+        {
+            s_rating.innerText = service_provider.rating;
 
-        setStars(service_provider.rating, stars)
+            let stars = [s_star1, s_star2, s_star3, s_star4, s_star5];
+
+            setStars(service_provider.rating, stars)
+        }
+        else
+        {
+            s_rating.innerText = "No Reviews Yet";
+            s_star1.style.display = 'none';
+            s_star2.style.display = 'none';
+            s_star3.style.display = 'none';
+            s_star4.style.display = 'none';
+            s_star5.style.display = 'none';
+        }
 
 
+        done = {"walking" : false, "grooming": false, "sitting": false};
         user_services.forEach(service => {
             switch(service.animal_type.type.toLowerCase())
             {
@@ -225,23 +260,23 @@ function updateServices(_callback)
             {
                 case "walking":
                     s_walking.removeAttribute("style");
-                    setPrice(s_walking, service);
+                    setPrice(s_walking, service, "walking");
                     break;
                 case "grooming":
                     s_grooming.removeAttribute("style");
-                    setPrice(s_grooming, service);
+                    setPrice(s_grooming, service, "grooming");
                     break;
                 case "sitting":
                     s_sitting.removeAttribute("style");
-                    setPrice(s_sitting, service);
+                    setPrice(s_sitting, service, "sitting");
                     break;
             }
         })
 
-        
 
-        setReview(r_clone, getBestReview(service_provider));
-        _callback();
+
+        if(r)
+            setReview(r_clone, r);
         // { SERVICE JSON
         //     "id": 1,
         //     "price": 24.99,
@@ -277,6 +312,7 @@ function updateServices(_callback)
         // }
 
     }
+    _callback();
 }
 
 function getBestReview(service_provider)

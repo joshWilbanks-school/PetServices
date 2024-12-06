@@ -101,12 +101,7 @@ async function createUser() {
     // user_type_id: int
 
     customer_user_type = user_types.filter(x => x.type = "customer")[0].id;
-    console.log("Customer user type: " + customer_user_type)
-    console.log("json: " + JSON.stringify({
-        user_name: username,
-        password_hash: password,
-        user_type_id: customer_user_type
-    }))
+
 
     fetch(link + 'login/signup', {
         method: "POST",
@@ -123,7 +118,6 @@ async function createUser() {
     })
     .then(response => {
         if(response.ok){
-            console.log("User created!");
             return response.json();
         }
         else{

@@ -77,6 +77,7 @@ function hideProfile()
 
     document.getElementById("profile").setAttribute("style", "display: none;");
     document.getElementById("scroller-wrapper").setAttribute("style", "");
+    document.getElementById("profile-service").setAttribute("style", "display: none;");
 
     localStorage.removeItem("profileShowing");
 }
@@ -106,6 +107,7 @@ function showServiceProfile(user_id)
     let template = document.getElementById("review-template")
     let content = template.content;
 
+    console.log(user_id)
     let serviceProvider = serviceProviderDic[user_id];
     let reviews = userReviewDic[serviceProvider.id];
 
@@ -137,11 +139,101 @@ function showServiceProfile(user_id)
     document.getElementById("profile").setAttribute("style", "");
     document.getElementById("scroller-wrapper").setAttribute("style", "");
     document.getElementById("profile-reviews-scroller").setAttribute("style", "");
+    document.getElementById("profile-service").setAttribute("style", "");
 
     let user = usersDic[user_id];
     setProfileInfo(user);
 
+    //minus 1 because it's now an array and we count from 0
+    let user_services = Object.values(serviceUserDic)[user_id - 1];
+    
+    let service_provider = serviceProviderDic[user_id];
 
+    r = getBestReview(service_provider);
+    console.log(r)
+
+    clone = document.getElementById("profile-service");
+
+
+    let s_name = clone.querySelector("#" + "service-full-name");
+    let s_u_name = clone.querySelector("#" + "service-user-name")
+    let s_rating = clone.querySelector("#" + "service-rating");
+    let s_star1 = clone.querySelector("#" + "service-star-1");
+    let s_star2 = clone.querySelector("#" + "service-star-2");
+    let s_star3 = clone.querySelector("#" + "service-star-3");
+    let s_star4 = clone.querySelector("#" + "service-star-4");
+    let s_star5 = clone.querySelector("#" + "service-star-5");
+    // clone.querySelector("#" + )
+    let s_cat = clone.querySelector("#" + "service-cats-bubble");
+    let s_dog = clone.querySelector("#" + "service-dogs-bubble");
+    let s_grooming = clone.querySelector("#" + "service-grooming-bubble");
+    let s_walking = clone.querySelector("#" + "service-walking-bubble");
+    let s_sitting = clone.querySelector("#" + "service-sitting-bubble");
+    
+    
+    clone.setAttribute("onClick", "showServiceProfile(" + user_id + ")")
+
+    fname = capitalize(user.first_name);
+    fname += " " + capitalize(user.last_name);
+    s_name.innerText = fname;
+
+    s_u_name.innerText = "@" + user.user_name.toLowerCase();
+
+
+    if(r)
+    {
+        s_rating.innerText = service_provider.rating;
+
+        let stars = [s_star1, s_star2, s_star3, s_star4, s_star5];
+
+        setStars(service_provider.rating, stars)
+    }
+    else
+    {
+        s_rating.innerText = "No Reviews Yet";
+        s_star1.style.display = 'none';
+        s_star2.style.display = 'none';
+        s_star3.style.display = 'none';
+        s_star4.style.display = 'none';
+        s_star5.style.display = 'none';
+    }
+
+
+    service_prices = {};
+    user_services.forEach(s => {
+        service_prices[s.service_type.type.toLowerCase()] = s;
+    })
+    
+    done = {"walking" : false, "grooming": false, "sitting": false};
+    user_services.forEach(service => {
+        switch(service.animal_type.type.toLowerCase())
+        {
+            case "dog":
+                s_dog.style.display = '';
+                break;
+
+            case "cat":
+                s_cat.style.display = '';
+                break;
+        }
+
+
+        switch(service.service_type.type.toLowerCase())
+        {
+            case "walking":
+                s_walking.removeAttribute("style");
+                setPrice(s_walking, service, "walking");
+                break;
+            case "grooming":
+                s_grooming.removeAttribute("style");
+                setPrice(s_grooming, service, "grooming");
+                break;
+            case "sitting":
+                s_sitting.removeAttribute("style");
+                setPrice(s_sitting, service, "sitting");
+                break;
+        }
+    })
 }
 
 function setProfileInfo(user)
@@ -179,6 +271,7 @@ function setProfileInfo(user)
         edit_btn.setAttribute("style", "display: none");
     else
         edit_btn.removeAttribute("style");
+
 
 }
 
@@ -240,7 +333,6 @@ function saveEdit()
     let cinfo = getTextValue("edit-contact-info");
     let bio = getTextValue("edit-bio");
 
-    console.log(fname);
 
     let local = true;
     let user = localStorage.getItem("user");
@@ -264,7 +356,6 @@ function saveEdit()
 
     user.contact_info = cinfo;
     user.biography = bio;
-    console.log(JSON.stringify(user));
     fetch(link + "user/" + user.id, {
         method: 'PUT',
         headers: {
@@ -285,7 +376,6 @@ function saveEdit()
         }
     })
     .then(data => {
-        console.log(data);
         if(local)
             localStorage.setItem("user", JSON.stringify(data));
         else
