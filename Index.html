@@ -24,6 +24,8 @@
             
             <div class="buttons-box" style="display: flex; flex-direction: row;">      
                 <button class="save-btn" onclick="saveEdit()">Save</button>
+                <button id="book-service-btn" class="book-service-btn" onclick="showBookingForm()">Book a Service</button>
+                <button id="cart-button" onclick="toggleCart()">Cart</button>
                 <button class="cancel-btn" onclick="toggleEditProfile()">Cancel</button>
             </div>
         </div>
@@ -42,7 +44,7 @@
                 <li><a href="#" onclick="showSection('sitting')">Sitting</a></li>
                 <li><a href="#" onclick="contact()">Contact</a></li>
                 <li><a href="#" onclick="showSection('reviews')">Reviews</a></li>
-                <li><button onclick="showBookingForm()">Book A Service</button></li>
+              <!-- <li><button onclick="showBookingForm()">Book A Service</button></li> --> 
                 <li><button id="logout-btn" onclick="logout_db()" style="font-size: 18px; margin: 0;">Logout</button></li>
             </ul>
         </nav>
@@ -113,6 +115,13 @@
                                     <h3 id="service-grooming-bubble" style=" display: none;">Grooming</h3>
                                     <h3 id="service-walking-bubble" style="display: none;">Walking</h3>
                                     <h3 id="service-sitting-bubble" style="display: none;">Sitting</h3>
+                                </div>
+                                
+                                <!-- Cart Section -->
+                                <div id="cart-section" style="display: none;">
+                                    <h2>Your Cart</h2>
+                                    <ul id="cart-items"></ul>
+                                    <button onclick="checkout()">Checkout</button>
                                 </div>
                             </div>
                             
